@@ -14,11 +14,11 @@ EXTENSION	:= .exe
 all: $(BIN)/$(EXECUTABLE)
 
 run: clean all
-	clear
+	cls
 	./$(BIN)/$(EXECUTABLE)$(EXTENSION)
 
 $(BIN)/$(EXECUTABLE): $(SRC)/*.cpp
 	$(CXX) $(CXX_FLAGS) -I$(INCLUDE) -L$(LIB) $^ -o $@$(EXTENSION) $(LIBRARIES)
 
 clean:
-	-rm $(BIN)/*
+	del /Q $(BIN)\*
