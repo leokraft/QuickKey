@@ -3,7 +3,7 @@
 ######################################################################
 
 TEMPLATE = app
-TARGET = special-character-finder
+TARGET = QuickKey
 INCLUDEPATH += .
 
 QT += widgets
