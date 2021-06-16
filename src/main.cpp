@@ -1,11 +1,19 @@
 #include <iostream>
 #include <windows.h>
+#include <QtWidgets>
+#include "finder.h"
+#include "flowlayout.h"
+#include <QPushButton>
+#include <string> 
 
-int main() {
+int main(int argc, char *argv[]) {
+
+    std::cout << "I am alive..." << std::endl;
+
     // NULL -> messages are posted to the message queue of the calling thread and must be processed in the message loop
     // Virtual-Key Codes -> https://docs.microsoft.com/en-us/windows/win32/inputdev/virtual-key-codes
     bool success = RegisterHotKey(NULL, 1, MOD_CONTROL, 0x59);
-
+    
     /**
      * TODOS
      * 
@@ -32,7 +40,14 @@ int main() {
         bool flag = false;
         while (!flag && GetMessage(&msg, NULL, 0, 0) != 0) {
             if (msg.message == WM_HOTKEY) {
+
                 std::cout << "Wild hotkey found!" << std::endl;
+
+                QApplication app(argc, argv);
+                Finder finder;
+                finder.show();
+                app.exec();
+
                 flag = true;   
             };
         };
