@@ -1,6 +1,10 @@
 .vscode
 release
 
+*.Release
+*.Debug
+.qmake.stash
+
 # create your own using qmake
 Makefile
 
