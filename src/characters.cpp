@@ -41,7 +41,7 @@ bool Characters::allTagsContained(QStringList charTags, QStringList searchTags) 
     for (QString tag : searchTags) {
         for (QString charTag : charTags) {
             // FIXME what about multiple unfinished tags?
-            if (!charTag.startsWith(tag)) {
+            if (!charTag.toLower().startsWith(tag.toLower())) {
                 return false;
             }
         }
