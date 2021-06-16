@@ -1,6 +1,9 @@
 .vscode
 release
 
+# create your own using qmake
+Makefile
+
 # Prerequisites
 *.d
 
