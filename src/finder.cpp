@@ -1,8 +1,6 @@
 #include <QtWidgets>
-#include <windows.h>
 #include "finder.h"
 #include "flowlayout.h"
-#include <iostream>
 
 Finder::Finder(QWidget *parent) : QWidget(parent) {
 

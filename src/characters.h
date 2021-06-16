@@ -1,10 +1,7 @@
 #ifndef CHARACTERS_H
 #define CHARACTERS_H
 
-#include <list>
-#include <string>
 #include <vector>
-#include <QList>
 #include <QStringList>
 
 class Characters {

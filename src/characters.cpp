@@ -1,5 +1,6 @@
 #include "characters.h"
 #include <map>
+#include <QString>
 
 /**Store list of characters with respective tags.
  * On construction read file and create binary matrix. (Rows=Tags, Columns=Chars)

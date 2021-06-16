@@ -3,8 +3,6 @@
 #include <QtWidgets>
 #include "finder.h"
 #include "flowlayout.h"
-#include <QPushButton>
-#include <string> 
 
 int main(int argc, char *argv[]) {
 
@@ -44,10 +42,11 @@ int main(int argc, char *argv[]) {
                 std::cout << "Wild hotkey found!" << std::endl;
 
                 QApplication app(argc, argv);
+
                 Finder finder;
                 finder.show();
+                
                 app.exec();
-
                 flag = true;   
             };
         };
