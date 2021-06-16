@@ -3,8 +3,9 @@
 #define FINDER_H
 
 #include <QWidget>
+#include <QString>
+#include "characters.h"
 
-class QLabel;
 class QLineEdit;
 class QGroupBox;
 class QPushButton;
@@ -16,11 +17,17 @@ class Finder : public QWidget {
 
     public:
         Finder(QWidget *parent = nullptr);
-        void addGroupBox(QGroupBox *group);
-
+        
     private:
         QLineEdit *searchLine;
         QPushButton *settingsButton;
         QVBoxLayout *contentLayout;
+
+        Characters *characters;
+
+        void copyFirstItem();
+        void applySearch(const QString &searchText);
+        void deleteOldItems();
+        void addGroupBox(QGroupBox *group);
 };
 #endif
