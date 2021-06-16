@@ -39,8 +39,11 @@ QStringList Characters::getByTags(QStringList tags) {
 bool Characters::allTagsContained(QStringList charTags, QStringList searchTags) {
 
     for (QString tag : searchTags) {
-        if (!charTags.contains(tag)) {
-            return false;
+        for (QString charTag : charTags) {
+            // FIXME what about multiple unfinished tags?
+            if (!charTag.startsWith(tag)) {
+                return false;
+            }
         }
     }
 
