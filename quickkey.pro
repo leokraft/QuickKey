@@ -8,6 +8,8 @@ INCLUDEPATH += .
 
 QT += widgets
 
+RC_FILE = app.rc
+
 CONFIG += console
 
 # You can make your code fail to compile if you use deprecated APIs.
