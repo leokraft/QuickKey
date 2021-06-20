@@ -1,6 +1,14 @@
-#include <QtWidgets>
+#include <QLineEdit>
+#include <QPushButton>
+#include <QHBoxLayout>
+#include <QScrollArea>
+#include <QGroupBox>
+#include <QClipboard>
+#include <QApplication>
+
 #include "finder.h"
 #include "flowlayout.h"
+#include "mainwindow.h"
 
 Finder::Finder(QWidget *parent) : QWidget(parent) {
 
@@ -77,6 +85,8 @@ void Finder::applySearch(const QString &searchText) {
         connect(button, &QPushButton::clicked,
         [this, character](){
             QApplication::clipboard()->setText(character);
+            static_cast<MainWindow*>(this->window())->hide();
+            searchLine->clear();
         });
         
         flow->addWidget(button);

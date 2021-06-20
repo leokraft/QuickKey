@@ -3,7 +3,6 @@
 #define FINDER_H
 
 #include <QWidget>
-#include <QString>
 #include "characters.h"
 
 class QLineEdit;
