@@ -1,10 +1,19 @@
----
-<div align="center"><h3>NOT YET USABLE</h2></div>
 
----
-# QuickKey
+<h1 align="center">
+  <br>
+  <img src="./images/qicon.svg" alt="QuickKey logo" style="vertical-align:middle" title="QuickKey" height="160" />
+  <br>
+  QuickKey
+  <br>
+  
+  ![GitHub release (latest by date)](https://img.shields.io/github/downloads/leokraft/QuickKey/latest/total?style=plastic)
+  ![GitHub](https://img.shields.io/github/license/leokraft/QuickKey?color=green)
+  
+</h1>
 
-A small Windows application to quickly find special characters an copy them to you clipboard in an instant without disturbing your workflow.
+
+
+<h4 align="center"> A small Windows application to quickly find special characters an copy them to you clipboard in an instant without disturbing your workflow.</h4>
 
 ## Install
 
