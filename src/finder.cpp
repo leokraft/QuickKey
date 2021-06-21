@@ -15,17 +15,17 @@ Finder::Finder(QWidget *parent) : QWidget(parent) {
 
     characters = new Characters;
 
-    searchLine = new QLineEdit;
-    searchLine->setFocus();
-    connect(searchLine, &QLineEdit::returnPressed,
+    searchBar = new QLineEdit;
+    searchBar->setFocus();
+    connect(searchBar, &QLineEdit::returnPressed,
             this, &Finder::copyFirstItem);
-    connect(searchLine, &QLineEdit::textChanged,
+    connect(searchBar, &QLineEdit::textChanged,
             this, &Finder::applySearch);
 
     settingsButton = new QPushButton;
 
     QHBoxLayout *topLayout = new QHBoxLayout;
-    topLayout->addWidget(searchLine);
+    topLayout->addWidget(searchBar);
     topLayout->addWidget(settingsButton);
 
     QScrollArea *scrollArea = new QScrollArea;
@@ -51,6 +51,10 @@ Finder::Finder(QWidget *parent) : QWidget(parent) {
     setLayout(mainLayout);
     setWindowTitle(tr("QuickKey"));
 };
+
+void Finder::setSearchBarFocus() {
+    searchBar->setFocus();
+}
 
 void Finder::copyFirstItem() {
 
@@ -87,7 +91,7 @@ void Finder::applySearch(const QString &searchText) {
         [this, character](){
             QApplication::clipboard()->setText(character);
             static_cast<MainWindow*>(this->window())->hide();
-            searchLine->clear();
+            searchBar->clear();
         });
         
         flow->addWidget(button);

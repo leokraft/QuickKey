@@ -6,20 +6,26 @@
 #include <QCloseEvent>
 #include <QSystemTrayIcon>
 
+#include "finder.h"
+#include "settings.h"
+
 class MainWindow : public QStackedWidget {
 
     Q_OBJECT
 
     public:
         MainWindow(QWidget *parent = nullptr);
-        void activate();
     protected:
         void closeEvent(QCloseEvent *event);
         void changeEvent(QEvent *event);
         bool nativeEvent(const QByteArray &eventType, void *message, qintptr *result);
         void iconActivated(QSystemTrayIcon::ActivationReason reason);
     private:
+        Finder *finder;
+        Settings *settings;
+
         void createTrayIcon();
+        void activate();
 };
 
 #endif

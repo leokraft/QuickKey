@@ -6,9 +6,6 @@
 #include <QFile>
 
 #include "mainwindow.h"
-#include "finder.h"
-#include "settings.h"
-
 
 MainWindow::MainWindow(QWidget *parent) : QStackedWidget(parent) {
 
@@ -16,8 +13,8 @@ MainWindow::MainWindow(QWidget *parent) : QStackedWidget(parent) {
     // Virtual-Key Codes -> https://docs.microsoft.com/en-us/windows/win32/inputdev/virtual-key-codes
     bool success = RegisterHotKey(HWND(this->winId()), 1, MOD_CONTROL, 0x59);
 
-    Finder *finder = new Finder;
-    Settings *settings = new Settings;
+    finder = new Finder;
+    settings = new Settings;
 
     this->addWidget(finder);
     this->addWidget(settings);
@@ -28,6 +25,7 @@ MainWindow::MainWindow(QWidget *parent) : QStackedWidget(parent) {
 void MainWindow::activate() {
     this->show();
     this->activateWindow();
+    finder->setSearchBarFocus();
 }
 
 bool MainWindow::nativeEvent(const QByteArray &eventType, void *message, qintptr *result) {

@@ -16,9 +16,10 @@ class Finder : public QWidget {
 
     public:
         Finder(QWidget *parent = nullptr);
+        void setSearchBarFocus();
         
     private:
-        QLineEdit *searchLine;
+        QLineEdit *searchBar;
         QPushButton *settingsButton;
         QVBoxLayout *contentLayout;
 
