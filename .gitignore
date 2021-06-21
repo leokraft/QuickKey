@@ -12,6 +12,7 @@ release
 
 # create your own using qmake
 Makefile
+*.rc
 
 # Prerequisites
 *.d

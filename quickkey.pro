@@ -8,7 +8,8 @@ INCLUDEPATH += .
 
 QT += widgets
 
-RC_FILE = app.rc
+RC_ICONS = src/qicon.ico
+RESOURCES = app.qrc
 
 CONFIG += console
 

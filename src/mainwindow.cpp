@@ -1,5 +1,10 @@
 #include <iostream>
 #include <windows.h>
+#include <QAction>
+#include <QMenu>
+#include <QSystemTrayIcon>
+#include <QApplication>
+#include <QFile>
 
 #include "mainwindow.h"
 #include "finder.h"
@@ -17,6 +22,8 @@ MainWindow::MainWindow(QWidget *parent) : QStackedWidget(parent) {
 
     this->addWidget(finder);
     this->addWidget(settings);
+
+    this->createTrayIcon();
 }
 
 void MainWindow::activate() {
@@ -54,4 +61,26 @@ void MainWindow::closeEvent(QCloseEvent *event) {
     std::cout << "Hi and Bye..." << std::endl;
     this->hide();
     event->ignore();
+}
+
+void MainWindow::createTrayIcon() {
+
+    QAction *openAction = new QAction(tr("&Open"), this);
+    connect(openAction, &QAction::triggered, this, &MainWindow::activate);
+
+    QAction *quitAction = new QAction(tr("&Exit"), this);
+    connect(quitAction, &QAction::triggered, QApplication::instance(), &QApplication::quit);
+
+    QMenu *trayIconMenu = new QMenu(this);
+
+    trayIconMenu->addAction(openAction);
+    trayIconMenu->addSeparator();
+    trayIconMenu->addAction(quitAction);
+
+    QSystemTrayIcon *trayIcon = new QSystemTrayIcon(this);
+    
+    trayIcon->setIcon(QIcon(":/qicon.svg"));
+    trayIcon->setContextMenu(trayIconMenu);
+
+    trayIcon->show();
 }

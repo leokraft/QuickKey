@@ -16,6 +16,8 @@ class MainWindow : public QStackedWidget {
         void closeEvent(QCloseEvent *event);
         void changeEvent(QEvent *event);
         bool nativeEvent(const QByteArray &eventType, void *message, qintptr *result);
+    private:
+        void createTrayIcon();
 };
 
 #endif
