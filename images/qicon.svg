@@ -1,46 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- Generator: Adobe Illustrator 16.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
-<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
-<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-	 width="203px" height="203px" viewBox="26.5 26.5 203 203" enable-background="new 26.5 26.5 203 203" xml:space="preserve">
+<svg version="1.2" baseProfile="tiny" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+	 x="0px" y="0px" width="203px" height="203px" viewBox="26.5 535.167 203 203" xml:space="preserve">
 <g>
-	<defs>
-		<filter id="Adobe_OpacityMaskFilter" filterUnits="userSpaceOnUse" x="26.5" y="26.5" width="203" height="203">
-			<feColorMatrix  type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 1 0"/>
-		</filter>
-	</defs>
-	<mask maskUnits="userSpaceOnUse" x="26.5" y="26.5" width="203" height="203" id="mask_circ">
-		<rect fill="#FFFFFF" filter="url(#Adobe_OpacityMaskFilter)" width="256" height="256"/>
-		<line id="svg_9" fill="none" stroke="#000000" stroke-width="63" x1="161.219" y1="161.219" x2="209.924" y2="209.924"/>
-		<ellipse id="svg_6" cx="128" cy="128" rx="71.469" ry="71.469"/>
-	</mask>
-	
-		<linearGradient id="svg_5_1_" gradientUnits="userSpaceOnUse" x1="-350.0596" y1="407.166" x2="-349.0596" y2="407.166" gradientTransform="matrix(203 0 0 -203 71088.5 82782.875)">
+	<linearGradient id="SVGID_1_" gradientUnits="userSpaceOnUse" x1="56.0376" y1="564.3164" x2="202.3611" y2="710.6399">
 		<stop  offset="0" style="stop-color:#2BCBFD;stop-opacity:0.9961"/>
 		<stop  offset="1" style="stop-color:#7049F4;stop-opacity:0.9961"/>
 	</linearGradient>
-	<ellipse id="svg_5" mask="url(#mask_circ)" fill="url(#svg_5_1_)" cx="128" cy="128" rx="101.5" ry="101.5"/>
-	<defs>
-		<filter id="Adobe_OpacityMaskFilter_1_" filterUnits="userSpaceOnUse" x="91.286" y="91.286" width="73.429" height="73.429">
-			<feColorMatrix  type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 1 0"/>
-		</filter>
-	</defs>
-	<mask maskUnits="userSpaceOnUse" x="91.286" y="91.286" width="73.429" height="73.429" id="mask_rect">
-		<rect fill="#FFFFFF" filter="url(#Adobe_OpacityMaskFilter_1_)" width="256" height="256"/>
-		<line fill="none" stroke="#000000" stroke-width="33" x1="135.535" y1="135.535" x2="171.859" y2="171.859"/>
-	</mask>
-	
-		<linearGradient id="svg_27_1_" gradientUnits="userSpaceOnUse" x1="-346.7388" y1="405.2461" x2="-345.7388" y2="405.2461" gradientTransform="matrix(61.4286 0 0 -61.4286 21396.959 25021.7012)">
-		<stop  offset="0" style="stop-color:#2BCBFD;stop-opacity:0.9961"/>
-		<stop  offset="1" style="stop-color:#7049F4;stop-opacity:0.9961"/>
-	</linearGradient>
-	
-		<rect id="svg_27" x="97.286" y="97.286" mask="url(#mask_rect)" fill-opacity="0" stroke="url(#svg_27_1_)" stroke-width="12" width="61.429" height="61.429"/>
-	
-		<linearGradient id="svg_30_1_" gradientUnits="userSpaceOnUse" x1="-343.4482" y1="403.3428" x2="-342.4482" y2="403.3428" gradientTransform="matrix(36.3241 0 0 -36.3241 12630.4199 14823.7939)">
-		<stop  offset="0" style="stop-color:#2BCBFD;stop-opacity:0.9961"/>
-		<stop  offset="1" style="stop-color:#7049F4;stop-opacity:0.9961"/>
-	</linearGradient>
-	<line id="svg_30" fill="none" stroke="url(#svg_30_1_)" stroke-width="24" x1="154.961" y1="154.571" x2="191.285" y2="190.896"/>
+	<path fill="url(#SVGID_1_)" d="M128,535.167c-56.057,0-101.5,45.443-101.5,101.5s45.443,101.5,101.5,101.5
+		c16.515,0,32.106-3.947,45.889-10.945l-22.924-22.923c-7.209,2.447-14.928,3.795-22.965,3.795
+		c-39.449,0-71.427-31.979-71.427-71.427c0-39.448,31.978-71.427,71.427-71.427c39.447,0,71.427,31.979,71.427,71.427
+		c0,8.028-1.345,15.738-3.787,22.941l22.926,22.925c6.991-13.776,10.935-29.36,10.935-45.866
+		C229.5,580.61,184.057,535.167,128,535.167z"/>
+	<polygon fill="url(#SVGID_1_)" points="152.732,611.952 152.732,637.987 164.732,649.986 164.732,599.935 91.268,599.935 
+		91.268,673.399 141.315,673.399 129.333,661.417 103.268,661.417 103.268,611.952 	"/>
+	<polygon fill="url(#SVGID_1_)" points="146.491,671.741 182.815,708.065 199.787,691.095 163.462,654.771 	"/>
 </g>
 </svg>
