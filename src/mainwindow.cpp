@@ -81,12 +81,14 @@ void MainWindow::createTrayIcon() {
     trayIcon->setIcon(QIcon(":/qicon.svg"));
     trayIcon->setContextMenu(trayIconMenu);
 
+    connect(trayIcon, &QSystemTrayIcon::activated, this, &MainWindow::iconActivated);
+
     trayIcon->show();
 }
 
 void MainWindow::iconActivated(QSystemTrayIcon::ActivationReason reason) {
 
-    if (reason == QSystemTrayIcon::Trigger || reason == QSystemTrayIcon::DoubleClick) {
+    if (reason == QSystemTrayIcon::Trigger) {
         this->activate();
     }
 }
