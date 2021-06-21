@@ -2,7 +2,6 @@
 #include <windows.h>
 #include <QAction>
 #include <QMenu>
-#include <QSystemTrayIcon>
 #include <QApplication>
 #include <QFile>
 
@@ -78,9 +77,16 @@ void MainWindow::createTrayIcon() {
     trayIconMenu->addAction(quitAction);
 
     QSystemTrayIcon *trayIcon = new QSystemTrayIcon(this);
-    
+
     trayIcon->setIcon(QIcon(":/qicon.svg"));
     trayIcon->setContextMenu(trayIconMenu);
 
     trayIcon->show();
+}
+
+void MainWindow::iconActivated(QSystemTrayIcon::ActivationReason reason) {
+
+    if (reason == QSystemTrayIcon::Trigger || reason == QSystemTrayIcon::DoubleClick) {
+        this->activate();
+    }
 }

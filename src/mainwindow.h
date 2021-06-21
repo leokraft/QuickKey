@@ -4,6 +4,7 @@
 #include <QStackedWidget>
 #include <QEvent>
 #include <QCloseEvent>
+#include <QSystemTrayIcon>
 
 class MainWindow : public QStackedWidget {
 
@@ -16,6 +17,7 @@ class MainWindow : public QStackedWidget {
         void closeEvent(QCloseEvent *event);
         void changeEvent(QEvent *event);
         bool nativeEvent(const QByteArray &eventType, void *message, qintptr *result);
+        void iconActivated(QSystemTrayIcon::ActivationReason reason);
     private:
         void createTrayIcon();
 };
