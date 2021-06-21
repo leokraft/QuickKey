@@ -5,6 +5,7 @@
 #include <QGroupBox>
 #include <QClipboard>
 #include <QApplication>
+#include <iostream>
 
 #include "finder.h"
 #include "flowlayout.h"
@@ -33,9 +34,9 @@ Finder::Finder(QWidget *parent) : QWidget(parent) {
     contentLayout = new QVBoxLayout;
     // add strech to prevent growth of child elements
     contentLayout->addStretch();
+    scrollAreaContent->setLayout(contentLayout);
     // apply empty search to fill content
     applySearch("");
-    scrollAreaContent->setLayout(contentLayout);
 
     scrollArea->setHorizontalScrollBarPolicy( Qt::ScrollBarAlwaysOff );
     scrollArea->setVerticalScrollBarPolicy( Qt::ScrollBarAsNeeded );
@@ -94,7 +95,8 @@ void Finder::applySearch(const QString &searchText) {
 
     resultBox->setLayout(flow);
     deleteOldItems();
-    addGroupBox(resultBox);
+    contentLayout->addWidget(resultBox);
+    contentLayout->addStretch();
 };
 
 void Finder::deleteOldItems() {
@@ -102,15 +104,8 @@ void Finder::deleteOldItems() {
     while ((child = contentLayout->takeAt(0)) != 0) {
         QWidget *widget = child->widget();
         if (widget) {
-            // widget is deleted if parent is set to NULL
-            widget->setParent(NULL);
-        }
-        
-    }
-}
 
-void Finder::addGroupBox(QGroupBox *group) {
-    // second last since the last is a strech
-    int insertIndex = contentLayout->count() - 1;
-    contentLayout->insertWidget(insertIndex, group);
+            delete widget;
+        }
+    }
 };
