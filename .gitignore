@@ -5,6 +5,11 @@ release
 *.Debug
 .qmake.stash
 
+#installer
+*.msi
+*.wixobj
+*.wixpdb
+
 # create your own using qmake
 Makefile
 
