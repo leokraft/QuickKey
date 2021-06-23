@@ -11,6 +11,8 @@ MainWindow::MainWindow(QWidget *parent) : QStackedWidget(parent) {
     // register hotkey to the window of this widget
     // Virtual-Key Codes -> https://docs.microsoft.com/en-us/windows/win32/inputdev/virtual-key-codes
     bool success = RegisterHotKey(HWND(this->winId()), 1, MOD_CONTROL, 0x59);
+    
+    this->setMinimumSize(350, 150);
 
     finder = new Finder;
     settings = new Settings;
