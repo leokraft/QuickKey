@@ -1,4 +1,3 @@
-#include <iostream>
 #include <windows.h>
 #include <QAction>
 #include <QMenu>
@@ -35,7 +34,6 @@ bool MainWindow::nativeEvent(const QByteArray &eventType, void *message, qintptr
 
     MSG *msg = static_cast<MSG *>(message);
     if (msg->message == WM_HOTKEY) {
-        std::cout << "Global shortcut pressed..." << std::endl;
         activate();
         return true;
     }
@@ -48,16 +46,27 @@ void MainWindow::changeEvent(QEvent *event) {
     QWidget::changeEvent(event);
     if (event->type() == QEvent::ActivationChange) {
         if(!this->isActiveWindow()) {
-            std::cout << "I am shy..." << std::endl;
             this->hide();
         }
     }
 }
 
 void MainWindow::closeEvent(QCloseEvent *event) {
-    std::cout << "Hi and Bye..." << std::endl;
-    this->hide();
-    event->ignore();
+
+    if (!isTrayExit) {
+        this->hide();
+        event->ignore();
+        return;
+    }
+
+    // exit has been caused by exit from tray
+
+}
+
+void MainWindow::trayExit() {
+    isTrayExit = true;
+    delete trayIcon;
+    close();
 }
 
 void MainWindow::createTrayIcon() {
@@ -66,7 +75,7 @@ void MainWindow::createTrayIcon() {
     connect(openAction, &QAction::triggered, this, &MainWindow::activate);
 
     QAction *quitAction = new QAction(tr("&Exit"), this);
-    connect(quitAction, &QAction::triggered, QApplication::instance(), &QApplication::quit);
+    connect(quitAction, &QAction::triggered, this, &MainWindow::trayExit);
 
     QMenu *trayIconMenu = new QMenu(this);
 
@@ -74,7 +83,7 @@ void MainWindow::createTrayIcon() {
     trayIconMenu->addSeparator();
     trayIconMenu->addAction(quitAction);
 
-    QSystemTrayIcon *trayIcon = new QSystemTrayIcon(this);
+    trayIcon = new QSystemTrayIcon(this);
 
     trayIcon->setIcon(QIcon(":/qicon.svg"));
     trayIcon->setContextMenu(trayIconMenu);
@@ -82,6 +91,7 @@ void MainWindow::createTrayIcon() {
     connect(trayIcon, &QSystemTrayIcon::activated, this, &MainWindow::iconActivated);
 
     trayIcon->show();
+    isTrayExit = false;
 }
 
 void MainWindow::iconActivated(QSystemTrayIcon::ActivationReason reason) {

@@ -23,9 +23,12 @@ class MainWindow : public QStackedWidget {
     private:
         Finder *finder;
         Settings *settings;
+        QSystemTrayIcon *trayIcon;
+        bool isTrayExit;
 
         void createTrayIcon();
         void activate();
+        void trayExit();
 };
 
 #endif
