@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='windows-1252'?>
 <Wix xmlns='http://schemas.microsoft.com/wix/2006/wi'>
 	<Product Name='QuickKey' 
-		Manufacturer='QuickKey' 
+		Manufacturer='Leo Kraft' 
 		Id='E50DC3E7-304B-42A4-A94B-D60EFDC8D38D' 
 		Language='2057' 
 		UpgradeCode='7d3905fc-6660-4d95-b128-32914adce035'
@@ -10,8 +10,9 @@
 		<Package Id='*' 
 			Keywords='Installer' 
 			Description="QuickKey 1.0 Installer" 
-			InstallerVersion='100' 
-			Languages='2057' 
+			InstallerVersion='200' 
+			Languages='2057'
+			Platform='x64'
 			Compressed='yes' />
 
 		<Media Id='1' Cabinet='QuickKey.cab' EmbedCab='yes' />
@@ -65,7 +66,7 @@
 				<Condition>DESKTOPSHORTCUT</Condition>
 				<Shortcut Id="desktopQuickKey" Name="QuickKey"
 					WorkingDirectory='QUICKKEYDIR' Icon="QuickKey.exe" IconIndex="0" />
-				<RegistryKey Root="HKCU" Key="Software\[Manufacturer]\[ProductName]\DesktopShortcutExists">
+				<RegistryKey Root="HKCU" Key="Software\[ProductName]\DesktopShortcutExists">
 					<RegistryValue Type="string" Value="" KeyPath="yes"/>
 				</RegistryKey>
 			</Component>
@@ -78,7 +79,7 @@
 				<Condition>STARTMENUSHORTCUT</Condition>
 				<Shortcut Id="startmenuQuickKey" Name="QuickKey"
 					WorkingDirectory='QUICKKEYDIR' Icon="QuickKey.exe" IconIndex="0" />
-				<RegistryKey Root="HKCU" Key="Software\[Manufacturer]\[ProductName]\StartMenuShortcutExists">
+				<RegistryKey Root="HKCU" Key="Software\[ProductName]\StartMenuShortcutExists">
 					<RegistryValue Type="string" Value="" KeyPath="yes"/>
 				</RegistryKey>
 				<RemoveFolder Id="RemovePM" On ="uninstall"/>
@@ -86,12 +87,10 @@
 		</DirectoryRef>
 
 		<DirectoryRef Id="TARGETDIR">
-			<Component Id="RegistryStartup" Guid="7fe78e38-2986-49da-93cc-2dfcd4635757">
+			<Component Id="RegistryStartup" Guid="7fe78e38-2986-49da-93cc-2dfcd4635757" Win64="yes">
 
 				<Condition>STARTUP</Condition>
-				<RegistryKey Root="HKLM" Key="Software\Microsoft\Windows\CurrentVersion\Run">
-					<RegistryValue Name="QuickKey" Type="string" Value="[#QuickKeyEXE]"/>
-				</RegistryKey>
+				<RegistryValue Id="autoStart" Root="HKLM" Key="Software\Microsoft\Windows\CurrentVersion\Run" Name="QuickKey" Type="string" Value="[#QuickKeyEXE]" Action="write"/>
 
 			</Component>
 		</DirectoryRef>
