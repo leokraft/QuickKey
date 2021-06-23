@@ -1,113 +1,182 @@
 <?xml version='1.0' encoding='windows-1252'?>
 <Wix xmlns='http://schemas.microsoft.com/wix/2006/wi'>
-    <Product Name='QuickKey 1.0' 
-        Manufacturer='Leo Kraft'
-        Id='E50DC3E7-304B-42A4-A94B-D60EFDC8D38D' 
-        UpgradeCode='35A41F42-4E1A-46FF-A3C4-F3FED16831CB'
-        Language='1033' Codepage='1252' Version='1.0.0'>
-        <Package Id='*' Keywords='Installer' Description="QuickKey 1.0 Installer"
-            InstallerVersion='100' Languages='1033' Compressed='yes' SummaryCodepage='1252' />
-        
-        <Media Id='1' Cabinet='QuickKey.cab' EmbedCab='yes'/>
+	<Product Name='QuickKey' 
+		Manufacturer='QuickKey' 
+		Id='E50DC3E7-304B-42A4-A94B-D60EFDC8D38D' 
+		Language='2057' 
+		UpgradeCode='7d3905fc-6660-4d95-b128-32914adce035'
+		Version='1.0.0'>
 
-        <Directory Id='TARGETDIR' Name='SourceDir'>
-            <Directory Id='ProgramFilesFolder' Name='PFiles'>
-                    <Directory Id='INSTALLDIR' Name='QuickKey'>
-            
-                        <Component Id='MainExecutable' Guid='A7824AF1-6EB8-4CD6-890F-78C29F1AF389'>
-                            <File Id='QuickKeyEXE' Name='QuickKey.exe' DiskId='1' Source='../release/QuickKey.exe' KeyPath='yes'>
+		<Package Id='*' 
+			Keywords='Installer' 
+			Description="QuickKey 1.0 Installer" 
+			InstallerVersion='100' 
+			Languages='2057' 
+			Compressed='yes' />
 
-                                <Shortcut Id="desktopQuickKey" Directory="DesktopFolder" Name="QuickKey"
-                                        WorkingDirectory='INSTALLDIR' Icon="QuickKey.exe" IconIndex="0" Advertise="yes" />
-                            </File>
-                        </Component>
+		<Media Id='1' Cabinet='QuickKey.cab' EmbedCab='yes' />
+		
+		<UI>
+			<UIRef Id="Custom_InstallDir" />
+			<Publish Dialog="ExitAndOptionsDialog"
+    			Control="Finish" 
+   				Event="DoAction" 
+    			Value="LaunchApplication">WIXUI_EXITDIALOGOPTIONALCHECKBOX = 1 and NOT Installed</Publish>
+		</UI>
 
-                        <Component Id="D3DCOMPILER_47" Guid="5C7EC71A-48F3-4047-B673-B785EE9CCB0D">
-                            <File Id="D3DCOMPILER_47" KeyPath="yes" Source="..\release\D3Dcompiler_47.dll" />
-                        </Component>
-                        <Component Id="LIBGCC_S_SEH1" Guid="C18E10A4-95AF-43E8-A4C1-227FE4F914FB">
-                            <File Id="LIBGCC_S_SEH1" KeyPath="yes" Source="..\release\libgcc_s_seh-1.dll" />
-                        </Component>
-                        <Component Id="LIBSTDC6" Guid="34F4219D-F589-4E9C-A1B7-DDF03CBD52B7">
-                            <File Id="LIBSTDC6" KeyPath="yes" Source="..\release\libstdc++-6.dll" />
-                        </Component>
-                        <Component Id="LIBWINPTHREAD" Guid="97CB401E-FC19-430E-9574-90142CE0CCBB">
-                            <File Id="LIBWINPTHREAD" KeyPath="yes" Source="..\release\libwinpthread-1.dll" />
-                        </Component>
-                        <Component Id="OPENGL32SW" Guid="0FAEAB4F-9645-4A22-8625-6F94A4DD40EA">
-                            <File Id="OPENGL32SW" KeyPath="yes" Source="..\release\opengl32sw.dll" />
-                        </Component>
-                        <Component Id="QT6CORE" Guid="48D729F9-1E70-448A-90DC-641C982061BC">
-                            <File Id="QT6CORE" KeyPath="yes" Source="..\release\Qt6Core.dll" />
-                        </Component>
-                        <Component Id="QT6GUI" Guid="D9F0A761-941E-45FB-938E-F4908CB5C9FC">
-                            <File Id="QT6GUI" KeyPath="yes" Source="..\release\Qt6Gui.dll" />
-                        </Component>
-                        <Component Id="QT6SVG" Guid="3647786D-A8E9-4BD8-984A-1F70D5B60D7F">
-                            <File Id="QT6SVG" KeyPath="yes" Source="..\release\Qt6Svg.dll" />
-                        </Component>
-                        <Component Id="QT6WIDGETS" Guid="49A4A20A-9C96-4330-B717-7F876A7F958D">
-                            <File Id="QT6WIDGETS" KeyPath="yes" Source="..\release\Qt6Widgets.dll" />
-                        </Component>
+		<!-- Dir structure -->
+		<Directory Id='TARGETDIR' Name='SourceDir'>
+			<Directory Id="ProgramFilesFolder" Name="PFiles">
+				<Directory Id='INSTALLDIR'>
+					<Directory Id='QUICKKEYDIR' Name='QuickKey'>
+						<Directory Id="ICONENGINESDIR" Name="iconengines" />
+						<Directory Id="PLATFORMSDIR" Name="platforms" />
+						<Directory Id="IMAGEFORMATSDIR" Name="imageformats" />
+					</Directory>
+				</Directory>
+			</Directory>
 
-                        <Directory Id="ICONENGINESDIR" Name="iconengines">
-                            <Component Id="QSVGICON" Guid="3BE84890-9EA2-4DE3-BC9E-4E3DA1E20468">
-                                <File Id="QSVGICON" KeyPath="yes" Source="..\release\iconengines\qsvgicon.dll" />
-                            </Component>
-                        </Directory>
+			<Directory Id="DesktopFolder"/>
+			<Directory Id="ProgramMenuFolder" Name="Programs">
+				<Directory Id="ProgramMenuDir" Name="QuickKey" />
+			</Directory>
+		</Directory>
+		  
+		<Property Id="WIXUI_INSTALLDIR" Value="INSTALLDIR" />
 
-                        <Directory Id="PLATFORMSDIR" Name="platforms">
-                            <Component Id="QWINDOWS" Guid="CC2932FE-97D0-4A53-9EE9-6CC15DDDEE90">
-                                <File Id="QWINDOWS" KeyPath="yes" Source="..\release\platforms\qwindows.dll" />
-                            </Component>
-                        </Directory>
+		<!-- Set icon for add/remove program util-->
+		<Property Id="ARPPRODUCTICON" Value="QuickKey.exe" />
 
-                        <Directory Id="IMAGEFORMATSDIR" Name="imageformats">
-                            <Component Id="QGIF" Guid="5D2560BA-526E-4642-8B80-50A53B5B6F24">
-                                <File Id="QGIF" KeyPath="yes" Source="..\release\imageformats\qgif.dll" />
-                            </Component>
-                            <Component Id="QICO" Guid="3C9E541D-641F-4CCA-93BE-EE5E4BB8B44C">
-                                <File Id="QICO" KeyPath="yes" Source="..\release\imageformats\qico.dll" />
-                            </Component>
-                            <Component Id="QJPEG" Guid="75F78741-761A-4F10-9F53-79BAF077108C">
-                                <File Id="QJPEG" KeyPath="yes" Source="..\release\imageformats\qjpeg.dll" />
-                            </Component>
-                            <Component Id="QSVG" Guid="E7A19A08-6EE8-4D55-83B8-DB79AD4A8B1B">
-                                <File Id="QSVG" KeyPath="yes" Source="..\release\imageformats\qsvg.dll" />
-                            </Component>
-                        </Directory>
+		<!-- checkbox properties-->
+		<Property Id="STARTMENUSHORTCUT" Secure='yes' Value="1" />
+		<Property Id="DESKTOPSHORTCUT" Secure='yes' />
+		<Property Id="STARTUP" Secure='yes' Value="1" />
+		
+		<Property Id="WIXUI_EXITDIALOGOPTIONALCHECKBOX" Value="1" />
+		<Property Id="WIXUI_EXITDIALOGOPTIONALTEXT" Value="Thank you for installing QuickKey." />
+		
+		<!-- launch App on finish -->
+		<Property Id="WixShellExecTarget" Value="[#QuickKeyEXE]" />
+		<CustomAction Id="LaunchApplication" BinaryKey="WixCA" DllEntry="WixShellExec" Impersonate="yes" />
+		
+		<DirectoryRef Id="DesktopFolder">
 
-                        <Directory Id="STYLESDIR" Name="styles">
-                            <Component Id="QWINDOWSVISTSTYLE" Guid="2B390D8B-B960-49F8-A11A-B649DA814A7B">
-                                <File Id="QWINDOWSVISTSTYLE" KeyPath="yes" Source="..\release\styles\qwindowsvistastyle.dll" />
-                            </Component>
-                        </Directory>
-                    </Directory>
-            </Directory>
+			<Component Id='DesktopShortcut' Guid='caa10633-9725-4e4d-9630-da0677d31f53'>
+				<Condition>DESKTOPSHORTCUT</Condition>
+				<Shortcut Id="desktopQuickKey" Name="QuickKey"
+					WorkingDirectory='QUICKKEYDIR' Icon="QuickKey.exe" IconIndex="0" />
+				<RegistryKey Root="HKCU" Key="Software\[Manufacturer]\[ProductName]\DesktopShortcutExists">
+					<RegistryValue Type="string" Value="" KeyPath="yes"/>
+				</RegistryKey>
+			</Component>
 
-            <Directory Id="DesktopFolder" Name="Desktop" />
-        </Directory>
+		</DirectoryRef>
 
-        <Feature Id='Complete' Level='1'>
-            <ComponentRef Id='MainExecutable' />
-            <ComponentRef Id='D3DCOMPILER_47' />
-            <ComponentRef Id='LIBGCC_S_SEH1' /> 
-            <ComponentRef Id='LIBSTDC6' /> 
-            <ComponentRef Id='LIBWINPTHREAD' /> 
-            <ComponentRef Id='OPENGL32SW' /> 
-            <ComponentRef Id='QT6CORE' />
-            <ComponentRef Id='QT6GUI' /> 
-            <ComponentRef Id='QT6SVG' /> 
-            <ComponentRef Id='QT6WIDGETS' /> 
-            <ComponentRef Id='QSVGICON' /> 
-            <ComponentRef Id='QWINDOWS' /> 
-            <ComponentRef Id='QGIF' /> 
-            <ComponentRef Id='QICO' /> 
-            <ComponentRef Id='QJPEG' /> 
-            <ComponentRef Id='QSVG' /> 
-            <ComponentRef Id='QWINDOWSVISTSTYLE' /> 
-        </Feature>
+		<DirectoryRef Id="ProgramMenuDir">
+			<Component Id='StartMenuShortcut' Guid='258e9c86-4605-4e31-8e8b-9b20631edb28'>
 
-        <Icon Id="QuickKey.exe" SourceFile="../release/QuickKey.exe" />
-    </Product>
+				<Condition>STARTMENUSHORTCUT</Condition>
+				<Shortcut Id="startmenuQuickKey" Name="QuickKey"
+					WorkingDirectory='QUICKKEYDIR' Icon="QuickKey.exe" IconIndex="0" />
+				<RegistryKey Root="HKCU" Key="Software\[Manufacturer]\[ProductName]\StartMenuShortcutExists">
+					<RegistryValue Type="string" Value="" KeyPath="yes"/>
+				</RegistryKey>
+				<RemoveFolder Id="RemovePM" On ="uninstall"/>
+			</Component>
+		</DirectoryRef>
+
+		<DirectoryRef Id="TARGETDIR">
+			<Component Id="RegistryStartup" Guid="7fe78e38-2986-49da-93cc-2dfcd4635757">
+
+				<Condition>STARTUP</Condition>
+				<RegistryKey Root="HKLM" Key="Software\Microsoft\Windows\CurrentVersion\Run">
+					<RegistryValue Name="QuickKey" Type="string" Value="[#QuickKeyEXE]"/>
+				</RegistryKey>
+
+			</Component>
+		</DirectoryRef>
+
+		<DirectoryRef Id="QUICKKEYDIR">
+			<!-- Component containing main executable-->
+			<Component Id='MainExecutable' Guid='A7824AF1-6EB8-4CD6-890F-78C29F1AF389'>
+				<File Id='QuickKeyEXE' Name='QuickKey.exe' DiskId='1' Source='../release/QuickKey.exe' KeyPath='yes' />
+			</Component>
+
+			<!-- Required (?) DLLs -->
+			<Component Id="D3DCOMPILER_47" Guid="5C7EC71A-48F3-4047-B673-B785EE9CCB0D">
+				<File Id="D3DCOMPILER_47" KeyPath="yes" Source="..\release\D3Dcompiler_47.dll" />
+			</Component>
+			<Component Id="LIBGCC_S_SEH1" Guid="C18E10A4-95AF-43E8-A4C1-227FE4F914FB">
+				<File Id="LIBGCC_S_SEH1" KeyPath="yes" Source="..\release\libgcc_s_seh-1.dll" />
+			</Component>
+			<Component Id="LIBSTDC6" Guid="34F4219D-F589-4E9C-A1B7-DDF03CBD52B7">
+				<File Id="LIBSTDC6" KeyPath="yes" Source="..\release\libstdc++-6.dll" />
+			</Component>
+			<Component Id="LIBWINPTHREAD" Guid="97CB401E-FC19-430E-9574-90142CE0CCBB">
+				<File Id="LIBWINPTHREAD" KeyPath="yes" Source="..\release\libwinpthread-1.dll" />
+			</Component>
+			<Component Id="QT6CORE" Guid="48D729F9-1E70-448A-90DC-641C982061BC">
+				<File Id="QT6CORE" KeyPath="yes" Source="..\release\Qt6Core.dll" />
+			</Component>
+			<Component Id="QT6GUI" Guid="D9F0A761-941E-45FB-938E-F4908CB5C9FC">
+				<File Id="QT6GUI" KeyPath="yes" Source="..\release\Qt6Gui.dll" />
+			</Component>
+			<Component Id="QT6SVG" Guid="3647786D-A8E9-4BD8-984A-1F70D5B60D7F">
+				<File Id="QT6SVG" KeyPath="yes" Source="..\release\Qt6Svg.dll" />
+			</Component>
+			<Component Id="QT6WIDGETS" Guid="49A4A20A-9C96-4330-B717-7F876A7F958D">
+				<File Id="QT6WIDGETS" KeyPath="yes" Source="..\release\Qt6Widgets.dll" />
+			</Component>
+		</DirectoryRef>
+
+		<DirectoryRef Id="ICONENGINESDIR">
+			<Component Id="QSVGICON" Guid="3BE84890-9EA2-4DE3-BC9E-4E3DA1E20468">
+				<File Id="QSVGICON" KeyPath="yes" Source="..\release\iconengines\qsvgicon.dll" />
+			</Component>
+		</DirectoryRef>
+
+		<DirectoryRef Id="PLATFORMSDIR">
+			<Component Id="QWINDOWS" Guid="CC2932FE-97D0-4A53-9EE9-6CC15DDDEE90">
+				<File Id="QWINDOWS" KeyPath="yes" Source="..\release\platforms\qwindows.dll" />
+			</Component>
+		</DirectoryRef>
+
+		<DirectoryRef Id="IMAGEFORMATSDIR">
+			<Component Id="QGIF" Guid="5D2560BA-526E-4642-8B80-50A53B5B6F24">
+				<File Id="QGIF" KeyPath="yes" Source="..\release\imageformats\qgif.dll" />
+			</Component>
+			<Component Id="QICO" Guid="3C9E541D-641F-4CCA-93BE-EE5E4BB8B44C">
+				<File Id="QICO" KeyPath="yes" Source="..\release\imageformats\qico.dll" />
+			</Component>
+			<Component Id="QJPEG" Guid="75F78741-761A-4F10-9F53-79BAF077108C">
+				<File Id="QJPEG" KeyPath="yes" Source="..\release\imageformats\qjpeg.dll" />
+			</Component>
+			<Component Id="QSVG" Guid="E7A19A08-6EE8-4D55-83B8-DB79AD4A8B1B">
+				<File Id="QSVG" KeyPath="yes" Source="..\release\imageformats\qsvg.dll" />
+			</Component>
+		</DirectoryRef>
+
+		<Feature Id='Complete' Level='1'>
+			<ComponentRef Id='MainExecutable' />
+			<ComponentRef Id='RegistryStartup' />
+			<ComponentRef Id='DesktopShortcut' />
+			<ComponentRef Id='StartMenuShortcut' />
+			<ComponentRef Id='D3DCOMPILER_47' />
+			<ComponentRef Id='LIBGCC_S_SEH1' />
+			<ComponentRef Id='LIBSTDC6' />
+			<ComponentRef Id='LIBWINPTHREAD' />
+			<ComponentRef Id='QT6CORE' />
+			<ComponentRef Id='QT6GUI' />
+			<ComponentRef Id='QT6SVG' />
+			<ComponentRef Id='QT6WIDGETS' />
+			<ComponentRef Id='QSVGICON' />
+			<ComponentRef Id='QWINDOWS' />
+			<ComponentRef Id='QGIF' />
+			<ComponentRef Id='QICO' />
+			<ComponentRef Id='QJPEG' />
+			<ComponentRef Id='QSVG' />
+		</Feature>
+
+		<Icon Id="QuickKey.exe" SourceFile="../release/QuickKey.exe" />
+	</Product>
 </Wix>
