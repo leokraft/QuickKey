@@ -88,7 +88,13 @@ void Finder::applySearch(const QString &searchText) {
 
     int i = 0;
     while (loader.hasNext() && i < 100) {
-        searchMatches.push_back(loader.next());
+
+        QString next = loader.next();
+
+        // we need to check since hasNext can return true if only empty lanes and comments are left
+        if (!next.isNull()) {
+            searchMatches.push_back(next);
+        } 
         i++;
     }
 
