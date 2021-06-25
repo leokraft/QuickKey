@@ -5,11 +5,11 @@
 		Id='E50DC3E7-304B-42A4-A94B-D60EFDC8D38D' 
 		Language='2057' 
 		UpgradeCode='7d3905fc-6660-4d95-b128-32914adce035'
-		Version='1.0.0'>
+		Version='1.1.0'>
 
 		<Package Id='*' 
 			Keywords='Installer' 
-			Description="QuickKey 1.0 Installer" 
+			Description="QuickKey 1.1 Installer" 
 			InstallerVersion='200' 
 			Languages='2057'
 			Platform='x64'
