@@ -10,7 +10,7 @@
 class Loader {
 
     public:
-        Loader(QStringList tags, std::string executable_folder);
+        Loader(QStringList tags);
         QString next();
         bool hasNext();
         void setFilter(QStringList tags);

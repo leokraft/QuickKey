@@ -12,7 +12,7 @@
 #include "flowlayout.h"
 #include "mainwindow.h"
 
-Finder::Finder(std::string executable_folder, QWidget *parent) : executable_folder(executable_folder), QWidget(parent)  {
+Finder::Finder(QWidget *parent) : QWidget(parent)  {
 
     searchBar = new QLineEdit;
     searchBar->setFocus();
@@ -83,8 +83,8 @@ void Finder::applySearch(const QString &searchText) {
     QStringList tags = searchText.split(" ");
 
     QStringList searchMatches;
-    std::cout << executable_folder << "\n";
-    Loader loader(tags, executable_folder);
+    std::cout << MainWindow::EXECUTABLE_DIR << "\n";
+    Loader loader(tags);
 
     int i = 0;
     while (loader.hasNext() && i < 100) {
