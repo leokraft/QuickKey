@@ -83,7 +83,7 @@ void Finder::applySearch(const QString &searchText) {
     QStringList tags = searchText.split(" ");
 
     QStringList searchMatches;
-    std::cout << MainWindow::EXECUTABLE_DIR << "\n";
+
     Loader loader(tags);
 
     int i = 0;
