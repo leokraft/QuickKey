@@ -1,5 +1,6 @@
 #include <QApplication>
 #include "mainwindow.h"
+#include <string>
 
 /** 
  * START APP -> run exe or autostart on system start
@@ -34,8 +35,21 @@
 
 int main(int argc, char *argv[]) {
 
+    // as seen in https://stackoverflow.com/questions/57626409/how-can-i-access-resources-in-c-without-setting-the-full-path
+    const std::string called_cmd = argv[0];
+
+    // Locate the executable name
+    size_t n = called_cmd.rfind("\\"); // Windows
+
+    // Handle potential errors (should never happen but it is for robustness purposes)
+    if(n == std::string::npos) // if pattern not found
+        return -1;
+
+    // Remove the executable name
+    std::string executable_folder = called_cmd.substr(0, n);
+
     QApplication app(argc, argv);
-    MainWindow mainWindow;
+    MainWindow mainWindow(executable_folder);
 
     // mainWindow starts hidden
  

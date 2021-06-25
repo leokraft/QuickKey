@@ -14,7 +14,7 @@ class MainWindow : public QStackedWidget {
     Q_OBJECT
 
     public:
-        MainWindow(QWidget *parent = nullptr);
+        MainWindow(std::string executable_folder, QWidget *parent = nullptr);
     protected:
         void closeEvent(QCloseEvent *event);
         void changeEvent(QEvent *event);

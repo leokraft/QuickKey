@@ -1,13 +1,10 @@
 #include "loader.h"
-#include <string>
 #include <sstream>
 
-#include <iostream>
-
-Loader::Loader(QStringList tags) : tags(tags) {
+Loader::Loader(QStringList tags, std::string executable_folder) : tags(tags) {
 
     //create stream
-    std::string FILE_NAME = "src/resources/DerivedName.txt";
+    std::string FILE_NAME = executable_folder + "/resources/DerivedName.txt";
     infile.open(FILE_NAME, std::ifstream::in);
 
 }

@@ -30,8 +30,10 @@
 			<Directory Id="ProgramFilesFolder" Name="PFiles">
 				<Directory Id='INSTALLDIR'>
 					<Directory Id='QUICKKEYDIR' Name='QuickKey'>
+						<Directory Id="RESOURCESDIR" Name="resources" />
 						<Directory Id="ICONENGINESDIR" Name="iconengines" />
 						<Directory Id="PLATFORMSDIR" Name="platforms" />
+						<Directory Id="STYLESDIR" Name="styles" />
 						<Directory Id="IMAGEFORMATSDIR" Name="imageformats" />
 					</Directory>
 				</Directory>
@@ -128,6 +130,18 @@
 			</Component>
 		</DirectoryRef>
 
+		<DirectoryRef Id="RESOURCESDIR">
+			<Component Id="UNICODEFILE" Guid="b439f9e2-dc8f-4710-9acd-258c232f2511">
+				<File Id="UNICODEFILE" KeyPath="yes" Source="..\src\resources\DerivedName.txt" />
+			</Component>
+		</DirectoryRef>
+
+		<DirectoryRef Id="STYLESDIR">
+			<Component Id="QWINSTYLE" Guid="a343431c-8bbb-431d-ab29-2fdf0e392bef">
+				<File Id="QWINSTYLE" KeyPath="yes" Source="..\release\styles\qwindowsvistastyle.dll" />
+			</Component>
+		</DirectoryRef>
+
 		<DirectoryRef Id="ICONENGINESDIR">
 			<Component Id="QSVGICON" Guid="3BE84890-9EA2-4DE3-BC9E-4E3DA1E20468">
 				<File Id="QSVGICON" KeyPath="yes" Source="..\release\iconengines\qsvgicon.dll" />
@@ -160,6 +174,7 @@
 			<ComponentRef Id='RegistryStartup' />
 			<ComponentRef Id='DesktopShortcut' />
 			<ComponentRef Id='StartMenuShortcut' />
+			<ComponentRef Id='UNICODEFILE' />
 			<ComponentRef Id='D3DCOMPILER_47' />
 			<ComponentRef Id='LIBGCC_S_SEH1' />
 			<ComponentRef Id='LIBSTDC6' />
@@ -170,6 +185,7 @@
 			<ComponentRef Id='QT6WIDGETS' />
 			<ComponentRef Id='QSVGICON' />
 			<ComponentRef Id='QWINDOWS' />
+			<ComponentRef Id='QWINSTYLE' />
 			<ComponentRef Id='QGIF' />
 			<ComponentRef Id='QICO' />
 			<ComponentRef Id='QJPEG' />

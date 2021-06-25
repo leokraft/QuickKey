@@ -6,7 +6,7 @@
 
 #include "mainwindow.h"
 
-MainWindow::MainWindow(QWidget *parent) : QStackedWidget(parent) {
+MainWindow::MainWindow(std::string executable_folder, QWidget *parent) : QStackedWidget(parent) {
 
     // register hotkey to the window of this widget
     // Virtual-Key Codes -> https://docs.microsoft.com/en-us/windows/win32/inputdev/virtual-key-codes
@@ -14,7 +14,7 @@ MainWindow::MainWindow(QWidget *parent) : QStackedWidget(parent) {
     
     this->setMinimumSize(350, 150);
 
-    finder = new Finder;
+    finder = new Finder(executable_folder);
     settings = new Settings;
 
     this->addWidget(finder);
