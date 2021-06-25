@@ -21,5 +21,5 @@ CONFIG += console
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 # Input
-HEADERS += src/finder.h src/flowlayout.h src/characters.h src/mainwindow.h src/settings.h
-SOURCES += src/finder.cpp src/flowlayout.cpp src/characters.cpp src/mainwindow.cpp src/settings.cpp src/main.cpp
+HEADERS += src/finder.h src/flowlayout.h src/mainwindow.h src/settings.h src/loader.h
+SOURCES += src/finder.cpp src/flowlayout.cpp src/mainwindow.cpp src/settings.cpp src/loader.cpp src/main.cpp

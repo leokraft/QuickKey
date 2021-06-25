@@ -7,13 +7,12 @@
 #include <QApplication>
 #include <iostream>
 
+#include "loader.h"
 #include "finder.h"
 #include "flowlayout.h"
 #include "mainwindow.h"
 
 Finder::Finder(QWidget *parent) : QWidget(parent) {
-
-    characters = new Characters;
 
     searchBar = new QLineEdit;
     searchBar->setFocus();
@@ -82,9 +81,17 @@ void Finder::applySearch(const QString &searchText) {
     FlowLayout *flow = new FlowLayout;
 
     QStringList tags = searchText.split(" ");
-    QStringList chars = characters->getByTags(tags);
 
-    for (QString character : chars) {
+    QStringList searchMatches;
+    Loader loader(tags);
+
+    int i = 0;
+    while (loader.hasNext() && i < 100) {
+        searchMatches.push_back(loader.next());
+        i++;
+    }
+
+    for (QString character : searchMatches) {
         QPushButton *button = new QPushButton(character);
         // copies string to clipboard on button press
         connect(button, &QPushButton::clicked,

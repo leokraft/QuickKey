@@ -3,7 +3,6 @@
 #define FINDER_H
 
 #include <QWidget>
-#include "characters.h"
 
 class QLineEdit;
 class QGroupBox;
@@ -22,8 +21,6 @@ class Finder : public QWidget {
         QLineEdit *searchBar;
         QPushButton *settingsButton;
         QVBoxLayout *contentLayout;
-
-        Characters *characters;
 
         void copyFirstItem();
         void applySearch(const QString &searchText);
