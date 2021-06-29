@@ -18,6 +18,7 @@ class MainWindow : public QStackedWidget {
         static std::string EXECUTABLE_DIR;
     protected:
         void closeEvent(QCloseEvent *event);
+        void showEvent(QShowEvent* event);
         void changeEvent(QEvent *event);
         bool nativeEvent(const QByteArray &eventType, void *message, qintptr *result);
         void iconActivated(QSystemTrayIcon::ActivationReason reason);
