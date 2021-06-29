@@ -26,7 +26,7 @@ QString Loader::next() {
             if (!std::getline(infile, tempLine)) {
                 return NULL;
             }
-        } while(tempLine[0] == '#');
+        } while(tempLine[0] == '#'); // ignore comments starting with #
 
         std::istringstream iline(tempLine);
 
@@ -35,11 +35,13 @@ QString Loader::next() {
 
         std::istringstream string_to_hex(unicodeHexString);
 
-        uint unicodeHex;
+        // convert string of hex values to 4-byte int representing ucs4
+        uint32_t unicodeHex;
         string_to_hex >> std::hex >> unicodeHex;
 
+        // interpret uint32_t as ucs4 encoding to get representation
         unicode = QString::fromUcs4(&unicodeHex, 1);
-
+        
         std::string unicodeTag;
         unicodeTags.clear();
 

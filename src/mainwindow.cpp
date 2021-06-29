@@ -17,7 +17,7 @@ MainWindow::MainWindow(std::string executable_dir, QWidget *parent) : QStackedWi
 
     // register hotkey to the window of this widget
     // Virtual-Key Codes -> https://docs.microsoft.com/en-us/windows/win32/inputdev/virtual-key-codes
-    bool success = RegisterHotKey(HWND(this->winId()), 1, MOD_CONTROL, 0x59);
+    RegisterHotKey(HWND(this->winId()), 1, MOD_CONTROL, 0x59);
     
     // startup on focused window
     // IntPtr foregroundWindowHandle = NativeMethods.GetForegroundWindow();
