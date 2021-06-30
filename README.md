@@ -15,6 +15,20 @@
 
 <h4 align="center"> A small Windows application to quickly find special characters an copy them to you clipboard in an instant without disturbing your workflow.</h4>
 
+
+## Usage
+
+![usage](./images/usage.gif)
+
+When in need of a special character while writing
+1. Press the *QuickKey*-Hotkey to open up a search window. (default: `Ctrl Y`)
+2. Type  a description of you desired character like **lambda** for **λ**.
+  > While typing you will see characters whos tags match your typed words.
+  > Seperate tags with a space.
+3. As soon as you see your desired character click it to copy it to your clipboard or, if in first position, just press **Enter** to copy.
+
+Alternatly you may browse all charcters, search for specific topics or just type the character-code to find you character.
+
 ## Install
 
 > There are two ways to install *QuickKey*.\
@@ -33,17 +47,6 @@ Run the installer and follow the instructions.
 Clone the repository, and run `qmake quickkey.pro` to create your own Makefile.\
 To build run `make` or `mingw32-make` depending on what you have installed.\
 Afterwards run the produced `QuickKey`-binary inside the release folder.
-
-## Usage
-
-When in need of a special character while writing
-1. Press the *QuickKey*-Hotkey to open up a search window. (default: `Ctrl Y`)
-2. Type  a description of you desired character like **lambda** for **λ**.
-  > While typing you will see characters whos tags match your typed words.
-  > Seperate tags with a space.
-3. As soon as you see your desired character click it to copy it to your clipboard or, if in first position, just press **Enter** to copy.
-
-Alternatly you may browse all charcters, search for specific topics or just type the character-code to find you character.
 
 ## Configuration
 
