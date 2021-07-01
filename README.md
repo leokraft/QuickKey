@@ -48,7 +48,9 @@ Clone the repository, and run `qmake quickkey.pro` to create your own Makefile.\
 To build run `make` or `mingw32-make` depending on what you have installed.\
 Afterwards run the produced `QuickKey`-binary inside the release folder.
 
-## Configuration
+## Configuration 
+
+**! not yet implemented !**
 
 A selection of configuration options
 
