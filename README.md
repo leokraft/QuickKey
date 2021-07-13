@@ -13,7 +13,7 @@
 
 
 
-<h4 align="center"> A small Windows application to quickly find special characters an copy them to you clipboard in an instant without disturbing your workflow.</h4>
+<h4 align="center">A small Windows application to quickly find special characters and copy them to your clipboard in an instant, without disturbing your workflow.</h4>
 
 
 ## Usage
