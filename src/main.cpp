@@ -1,7 +1,7 @@
 #include <QApplication>
-#include "mainwindow.h"
 #include <string>
-#include <QFile>
+#include "mainwindow.h"
+#include "settings.h"
 
 /** 
  * START APP -> run exe or autostart on system start
@@ -47,21 +47,13 @@ int main(int argc, char *argv[]) {
         return -1;
 
     // Remove the executable name
-    std::string executable_folder = called_cmd.substr(0, n);
+    std::string executableDir = called_cmd.substr(0, n);
 
     QApplication app(argc, argv);
 
-    // Load an application style
-    QFile styleFile( QString::fromStdString(executable_folder + "/style/dark.qss"));
-    styleFile.open( QFile::ReadOnly );
-
-    // TODO: load base style and append theme
-
-    // Apply the loaded stylesheet
-    QString style( styleFile.readAll() );
-    app.setStyleSheet( style );
-
-    MainWindow mainWindow(executable_folder);
+    Settings::getInstance().setExecutableDir(executableDir);
+    Settings::getInstance().setTheme(Settings::DARK);
+    MainWindow mainWindow(executableDir);
 
     // mainWindow starts hidden
  

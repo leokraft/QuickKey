@@ -7,7 +7,7 @@
 #include <QParallelAnimationGroup>
 
 #include "mainwindow.h"
-
+#include "settings.h"
 
 std::string MainWindow::EXECUTABLE_DIR;
 
@@ -32,10 +32,8 @@ MainWindow::MainWindow(std::string executable_dir, QWidget *parent) : QStackedWi
     this->setMinimumSize(450, 250);
 
     finder = new Finder;
-    settings = new Settings;
-
     this->addWidget(finder);
-    this->addWidget(settings);
+    this->addWidget(&Settings::getInstance());
 
     this->createTrayIcon();
 }

@@ -7,7 +7,6 @@
 #include <QSystemTrayIcon>
 
 #include "finder.h"
-#include "settings.h"
 
 class MainWindow : public QStackedWidget {
 
@@ -24,7 +23,6 @@ class MainWindow : public QStackedWidget {
         void iconActivated(QSystemTrayIcon::ActivationReason reason);
     private:
         Finder *finder;
-        Settings *settings;
         QSystemTrayIcon *trayIcon;
         bool isTrayExit;
 
