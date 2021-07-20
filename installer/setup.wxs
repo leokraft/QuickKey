@@ -5,7 +5,7 @@
 		Id='E50DC3E7-304B-42A4-A94B-D60EFDC8D38D' 
 		Language='2057' 
 		UpgradeCode='7d3905fc-6660-4d95-b128-32914adce035'
-		Version='1.2.0-alpha'>
+		Version='1.3.0'>
 
 		<Package Id='*' 
 			Keywords='Installer' 
@@ -34,6 +34,7 @@
 						<Directory Id="ICONENGINESDIR" Name="iconengines" />
 						<Directory Id="PLATFORMSDIR" Name="platforms" />
 						<Directory Id="STYLESDIR" Name="styles" />
+						<Directory Id="STYLE_SHEETS" Name="style_sheets" />
 						<Directory Id="IMAGEFORMATSDIR" Name="imageformats" />
 					</Directory>
 				</Directory>
@@ -142,6 +143,15 @@
 			</Component>
 		</DirectoryRef>
 
+		<DirectoryRef Id="STYLE_SHEETS">
+			<Component Id="BASE_STYLE" Guid="929dc80c-900d-4874-b60e-475493224ae4">
+				<File Id="BASE_STYLE" KeyPath="yes" Source="..\release\style_sheets\base.qss" />
+			</Component>
+			<Component Id="DARK_STYLE" Guid="f57842e2-4b68-403d-8ec7-041aadd095aa">
+				<File Id="DARK_STYLE" KeyPath="yes" Source="..\release\style_sheets\dark.qss" />
+			</Component>
+		</DirectoryRef>
+
 		<DirectoryRef Id="ICONENGINESDIR">
 			<Component Id="QSVGICON" Guid="3BE84890-9EA2-4DE3-BC9E-4E3DA1E20468">
 				<File Id="QSVGICON" KeyPath="yes" Source="..\release\iconengines\qsvgicon.dll" />
@@ -174,6 +184,8 @@
 			<ComponentRef Id='RegistryStartup' />
 			<ComponentRef Id='DesktopShortcut' />
 			<ComponentRef Id='StartMenuShortcut' />
+			<ComponentRef Id='BASE_STYLE' />
+			<ComponentRef Id='DARK_STYLE' />
 			<ComponentRef Id='UNICODEFILE' />
 			<ComponentRef Id='D3DCOMPILER_47' />
 			<ComponentRef Id='LIBGCC_S_SEH1' />
