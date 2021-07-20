@@ -11,7 +11,15 @@ QT += widgets
 RC_ICONS = src/qicon.ico
 RESOURCES = app.qrc
 
-CONFIG += console
+CONFIG += file_copies
+
+COPIES += style_sheets resources
+
+style_sheets.files = $$files(src/style_sheets/*.qss)
+style_sheets.path = $$OUT_PWD/release/style_sheets
+
+resources.files = $$files(src/resources/*)
+resources.path = $$OUT_PWD/release/resources
 
 # You can make your code fail to compile if you use deprecated APIs.
 # In order to do so, uncomment the following line.
@@ -21,5 +29,5 @@ CONFIG += console
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 # Input
-HEADERS += src/finder.h src/flowlayout.h src/mainwindow.h src/settings.h src/loader.h
-SOURCES += src/finder.cpp src/flowlayout.cpp src/mainwindow.cpp src/settings.cpp src/loader.cpp src/main.cpp
+HEADERS += $$files(src/*.h)
+SOURCES += $$files(src/*.cpp)
