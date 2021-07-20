@@ -15,22 +15,28 @@
 Finder::Finder(QWidget *parent) : QWidget(parent)  {
 
     searchBar = new QLineEdit;
+    searchBar->setObjectName("search");
     searchBar->setFocus();
     connect(searchBar, &QLineEdit::returnPressed,
             this, &Finder::copyFirstItem);
     connect(searchBar, &QLineEdit::textChanged,
             this, &Finder::applySearch);
 
-    settingsButton = new QPushButton;
+    QHBoxLayout *headerLayout = new QHBoxLayout;
+    headerLayout->setContentsMargins(8, 8, 4, 8);
+    headerLayout->addWidget(searchBar);
 
-    QHBoxLayout *topLayout = new QHBoxLayout;
-    topLayout->addWidget(searchBar);
-    topLayout->addWidget(settingsButton);
+    QWidget *header = new QWidget;
+    header->setObjectName("header");
+    header->setLayout(headerLayout);
 
     QScrollArea *scrollArea = new QScrollArea;
+    scrollArea->setObjectName("scroll");
+
     QWidget *scrollAreaContent = new QWidget;
 
     contentLayout = new QVBoxLayout;
+    contentLayout->setContentsMargins(0, 0, 0, 0);
     // add strech to prevent growth of child elements
     contentLayout->addStretch();
     scrollAreaContent->setLayout(contentLayout);
@@ -44,11 +50,12 @@ Finder::Finder(QWidget *parent) : QWidget(parent)  {
     scrollArea->setWidget(scrollAreaContent);
 
     QVBoxLayout *mainLayout = new QVBoxLayout;
-    mainLayout->addLayout(topLayout);
+    mainLayout->setContentsMargins(0, 0, 0, 0);
+    mainLayout->addWidget(header);
     mainLayout->addWidget(scrollArea);
 
     setLayout(mainLayout);
-    setWindowTitle(tr("QuickKey"));
+    setWindowTitle("QuickKey");
 };
 
 void Finder::setSearchBarFocus() {
@@ -77,7 +84,9 @@ void Finder::copyFirstItem() {
 
 void Finder::applySearch(const QString &searchText) {
 
-    QGroupBox *resultBox = new QGroupBox("Search results");
+    QWidget *resultBox = new QWidget();
+    resultBox->setObjectName("selector");
+    
     FlowLayout *flow = new FlowLayout;
 
     QStringList tags = searchText.split(" ");
@@ -91,13 +100,14 @@ void Finder::applySearch(const QString &searchText) {
 
         QString next = loader.next();
 
-        // we need to check since hasNext can return true if only empty lanes and comments are left
+        // we need to check since hasNext can return true if only empty lines and comments are left
         if (!next.isNull()) {
             searchMatches.push_back(next);
         } 
         i++;
     }
 
+    // to intergrate inside iterator ^^^^^^
     for (QString character : searchMatches) {
         QPushButton *button = new QPushButton(character);
         // copies string to clipboard on button press
