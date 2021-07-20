@@ -1,0 +1,35 @@
+/* header with search bar */
+
+QLineEdit#search {
+    border-width: 1px;
+    border-style: solid;
+    border-radius: 6px;
+    margin: 0;
+    padding-left: 12px;
+    padding-right: 12px;
+    font-size: 16px;
+    height: 36px;
+}
+
+/* scroll area */
+
+QFrame#scroll {
+    border: none;
+    margin: 0;
+}
+
+/* scroll bar */
+
+QScrollBar:vertical {
+    border: none;
+}
+
+/* buttons */
+
+QWidget#selector > QPushButton {
+    padding: 8px;
+    margin: 0;
+    font-size: 20px;
+    width: 32px;
+    height: 32px;
+}
