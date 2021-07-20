@@ -26,7 +26,9 @@ MainWindow::MainWindow(std::string executable_dir, QWidget *parent) : QStackedWi
     // startup from cursor
     // Screen.FromPoint(System.Windows.Forms.Cursor.Position)
 
-    this->setWindowFlags(Qt::CustomizeWindowHint);
+    this->setObjectName("base");
+
+    this->setWindowFlags(Qt::FramelessWindowHint);
     this->setMinimumSize(450, 250);
 
     finder = new Finder;
