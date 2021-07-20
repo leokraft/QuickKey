@@ -24,8 +24,8 @@ class Settings : public QWidget {
         Settings() {}
 
         std::string executableDir = "";
-        const std::string BASE_STYLE_PATH = "/style/base.qss";
-        const std::string DARK_STYLE_PATH = "/style/dark.qss";
+        const std::string BASE_STYLE_PATH = "/style_sheets/base.qss";
+        const std::string DARK_STYLE_PATH = "/style_sheets/dark.qss";
 };
 
 #endif
