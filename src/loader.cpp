@@ -1,11 +1,13 @@
 #include "loader.h"
 #include <sstream>
-#include "mainwindow.h"
+#include "main_window.h"
+#include "win_path_manager.h"
 
 Loader::Loader(QStringList tags) : tags(tags) {
 
     //create stream
-    std::string FILE_NAME = MainWindow::EXECUTABLE_DIR + "/resources/DerivedName.txt";
+    // TODO handle this (WinPathManager) diffrently to respect interface
+    std::string FILE_NAME = WinPathManager::executablePath + "/resources/DerivedName.txt";
     infile.open(FILE_NAME, std::ifstream::in);
 
 }

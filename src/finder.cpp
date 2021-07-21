@@ -10,7 +10,7 @@
 #include "loader.h"
 #include "finder.h"
 #include "flowlayout.h"
-#include "mainwindow.h"
+#include "main_window.h"
 
 Finder::Finder(QWidget *parent) : QWidget(parent)  {
 

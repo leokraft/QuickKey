@@ -1,23 +1,21 @@
-#include <windows.h>
 #include <QAction>
 #include <QMenu>
 #include <QApplication>
 #include <QFile>
 #include <QPropertyAnimation>
 #include <QParallelAnimationGroup>
+#include <windows.h>
 
-#include "mainwindow.h"
+#include "main_window.h"
+#include "i_platform_manager.h"
+#include "win_platform.h"
 #include "settings.h"
 
-std::string MainWindow::EXECUTABLE_DIR;
-
-MainWindow::MainWindow(std::string executable_dir, QWidget *parent) : QStackedWidget(parent) {
-
-    EXECUTABLE_DIR = executable_dir;
-
-    // register hotkey to the window of this widget
-    // Virtual-Key Codes -> https://docs.microsoft.com/en-us/windows/win32/inputdev/virtual-key-codes
-    RegisterHotKey(HWND(this->winId()), 1, MOD_CONTROL, 0x59);
+MainWindow::MainWindow(QWidget *parent) : QStackedWidget(parent) {
+    
+    // default to windows at the moment
+    IPlatformManager *platform = new WinPlatform();
+    platform->setHotkey("unused", this->winId());
     
     // startup on focused window
     // IntPtr foregroundWindowHandle = NativeMethods.GetForegroundWindow();
@@ -43,6 +41,13 @@ void MainWindow::activate() {
     this->show();
     this->activateWindow();
     finder->setSearchBarFocus();
+}
+
+void MainWindow::hideEvent(QHideEvent *event) {
+    QWidget::hideEvent(event);
+
+    // make sure next start the main window with the selector is shown
+    setCurrentIndex(0);
 }
 
 bool MainWindow::nativeEvent(const QByteArray &eventType, void *message, qintptr *result) {
@@ -130,15 +135,26 @@ void MainWindow::trayExit() {
 
 void MainWindow::createTrayIcon() {
 
+    // open app
     QAction *openAction = new QAction(tr("&Open"), this);
     connect(openAction, &QAction::triggered, this, &MainWindow::activate);
 
+    // change to settings and open app
+    QAction *settingsAction = new QAction(tr("&Settings"), this);
+    connect(settingsAction, &QAction::triggered, [this](){
+            setCurrentIndex(1);
+            activate();
+        });
+
+    // exit app completely
     QAction *quitAction = new QAction(tr("&Exit"), this);
     connect(quitAction, &QAction::triggered, this, &MainWindow::trayExit);
 
     QMenu *trayIconMenu = new QMenu(this);
-
+    trayIconMenu->setObjectName("trayIconMenu");
+    
     trayIconMenu->addAction(openAction);
+    trayIconMenu->addAction(settingsAction);
     trayIconMenu->addSeparator();
     trayIconMenu->addAction(quitAction);
 

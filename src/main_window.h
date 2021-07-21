@@ -13,11 +13,11 @@ class MainWindow : public QStackedWidget {
     Q_OBJECT
 
     public:
-        MainWindow(std::string executable_dir, QWidget *parent = nullptr);
-        static std::string EXECUTABLE_DIR;
+        MainWindow(QWidget *parent = nullptr);
     protected:
         void closeEvent(QCloseEvent *event);
         void showEvent(QShowEvent* event);
+        void hideEvent(QHideEvent *event);
         void changeEvent(QEvent *event);
         bool nativeEvent(const QByteArray &eventType, void *message, qintptr *result);
         void iconActivated(QSystemTrayIcon::ActivationReason reason);

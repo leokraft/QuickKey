@@ -1,6 +1,7 @@
 #include <QApplication>
-#include <string>
-#include "mainwindow.h"
+
+#include "main_window.h"
+#include "win_path_manager.h"
 #include "settings.h"
 
 /** 
@@ -36,24 +37,14 @@
 
 int main(int argc, char *argv[]) {
 
-    // as seen in https://stackoverflow.com/questions/57626409/how-can-i-access-resources-in-c-without-setting-the-full-path
-    const std::string called_cmd = argv[0];
-
-    // Locate the executable name
-    size_t n = called_cmd.rfind("\\"); // Windows
-
-    // Handle potential errors (should never happen but it is for robustness purposes)
-    if(n == std::string::npos) // if pattern not found
-        return -1;
-
-    // Remove the executable name
-    std::string executableDir = called_cmd.substr(0, n);
+    IPathManager *pathManager = new WinPathManager();
+    pathManager->initExecutablePath(argv[0]);
 
     QApplication app(argc, argv);
 
-    Settings::getInstance().setExecutableDir(executableDir);
-    Settings::getInstance().setTheme(Settings::DARK);
-    MainWindow mainWindow(executableDir);
+    Settings::getInstance();
+    
+    MainWindow mainWindow;
 
     // mainWindow starts hidden
  
