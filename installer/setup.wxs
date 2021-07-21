@@ -104,6 +104,10 @@
 				<File Id='QuickKeyEXE' Name='QuickKey.exe' DiskId='1' Source='../release/QuickKey.exe' KeyPath='yes' />
 			</Component>
 
+			<Component Id="CONFIG" Guid="affde892-80fe-4008-b7bb-729ca98388c5">
+				<File Id="CONFIG" KeyPath="yes" Source="..\release\config.ini" />
+			</Component>
+
 			<!-- Required (?) DLLs -->
 			<Component Id="D3DCOMPILER_47" Guid="5C7EC71A-48F3-4047-B673-B785EE9CCB0D">
 				<File Id="D3DCOMPILER_47" KeyPath="yes" Source="..\release\D3Dcompiler_47.dll" />
@@ -181,6 +185,7 @@
 
 		<Feature Id='Complete' Level='1'>
 			<ComponentRef Id='MainExecutable' />
+			<ComponentRef Id='CONFIG' />
 			<ComponentRef Id='RegistryStartup' />
 			<ComponentRef Id='DesktopShortcut' />
 			<ComponentRef Id='StartMenuShortcut' />
