@@ -47,3 +47,19 @@ QWidget#selector > QPushButton:hover {
     border-color: #8B949E;
     color: #C9D1D9;
 }
+
+/* sys tray*/
+
+QMenu#trayIconMenu::item:selected {
+    background-color: #30363D;
+}
+/* sys tray */
+
+QMenu#trayIconMenu::separator {
+    background: #F4F9FD;
+
+    /* only neded in darkmode therefore not in base qss*/
+    height: 1px;
+    margin-left: 10px;
+    margin-right: 5px;
+}
