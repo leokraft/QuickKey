@@ -1,4 +1,5 @@
 :: Script to build app, copy dependencies and build installer
+qmake .\quickkey.pro
 mingw32-make
 cd .\release
 windeployqt .\QuickKey.exe --no-translations --no-opengl-sw --release
