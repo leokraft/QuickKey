@@ -4,22 +4,26 @@
 
 TEMPLATE = app
 TARGET = QuickKey
-INCLUDEPATH += .
+INCLUDEPATH += . ./src/win ./src/interfaces
 
 QT += widgets
 
 RC_ICONS = src/qicon.ico
 RESOURCES = app.qrc
 
+#CONFIG += console
 CONFIG += file_copies
 
-COPIES += style_sheets resources
+COPIES += style_sheets resources config
 
 style_sheets.files = $$files(src/style_sheets/*.qss)
 style_sheets.path = $$OUT_PWD/release/style_sheets
 
 resources.files = $$files(src/resources/*)
 resources.path = $$OUT_PWD/release/resources
+
+config.files = src/config.ini
+config.path = $$OUT_PWD/release/
 
 # You can make your code fail to compile if you use deprecated APIs.
 # In order to do so, uncomment the following line.
@@ -29,5 +33,5 @@ resources.path = $$OUT_PWD/release/resources
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 # Input
-HEADERS += $$files(src/*.h)
-SOURCES += $$files(src/*.cpp)
+HEADERS += $$files(src/*.h) $$files(src/win/*.h) $$files(src/interfaces/*.h)
+SOURCES += $$files(src/*.cpp) $$files(src/win/*.cpp) $$files(src/interfaces/*.cpp)
