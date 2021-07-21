@@ -22,7 +22,7 @@
 
 When in need of a special character while writing
 1. Press the *QuickKey*-Hotkey to open up a search window. (default: `Ctrl Y`)
-2. Type  a description of you desired character like **lambda** for **λ**.
+2. Type  a description of you desired character like **integral** for **∫**.
   > While typing you will see characters whos tags match your typed words.
   > Seperate tags with a space.
 3. As soon as you see your desired character click it to copy it to your clipboard or, if in first position, just press **Enter** to copy.
@@ -50,14 +50,13 @@ Afterwards run the produced `QuickKey`-binary inside the release folder.
 
 ## Configuration 
 
-**! not yet implemented !**
-
 A selection of configuration options
 
-- hotkey to open *QuickKey* search window
-- custom tags/topics for characters
 - light/darkmode
-- language (en/de)
+- window appearance position
+- ~~hotkey to open *QuickKey* search window
+- ~~custom tags/topics for characters
+- ~~language (en/de)
 
 all these options are available under the settings.
 
