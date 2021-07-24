@@ -14,12 +14,23 @@
 
 Settings::Settings() {
 
+    // initialization
+    config = new WinConfigManager;
+    
+    std::string theme = config->getConfig("theme");
+    
+    setTheme(stringToThemeEnum(theme));
+
     // gui
 
     this->setFocusPolicy(Qt::StrongFocus);
 
     QComboBox *themeSelector = new QComboBox;
     themeSelector->addItems({"Dark", "Light"});
+    int index = themeSelector->findText(QString::fromStdString(theme));
+    if ( index != -1 ) { // -1 for not found
+        themeSelector->setCurrentIndex(index);
+    }
     connect(themeSelector,QComboBox::currentTextChanged,[this](const QString &text){
         Theme theme = stringToThemeEnum(text.toStdString());
         setTheme(theme);
@@ -37,13 +48,6 @@ Settings::Settings() {
     layout->addRow(tr("&Theme:"), themeSelector);
     //layout->addRow(tr("&Position:"), positionSelector);
     this->setLayout(layout);
-
-    // initialization
-    config = new WinConfigManager;
-    
-    std::string theme = config->getConfig("theme");
-    
-    setTheme(stringToThemeEnum(theme));
 }
 
 Settings::Theme Settings::stringToThemeEnum(std::string string) {
