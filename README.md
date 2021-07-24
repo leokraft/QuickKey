@@ -53,10 +53,7 @@ Afterwards run the produced `QuickKey`-binary inside the release folder.
 A selection of configuration options
 
 - light/darkmode
-- window appearance position
-- ~~hotkey to open *QuickKey* search window
-- ~~custom tags/topics for characters
-- ~~language (en/de)
+- hotkey to open *QuickKey* search window
 
 all these options are available under the settings.
 
