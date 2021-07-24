@@ -8,14 +8,9 @@
 
 #include "main_window.h"
 #include "i_platform_manager.h"
-#include "win_platform.h"
 #include "settings.h"
 
 MainWindow::MainWindow(QWidget *parent) : QStackedWidget(parent) {
-    
-    // default to windows at the moment
-    IPlatformManager *platform = new WinPlatform();
-    platform->setHotkey("unused", this->winId());
     
     // startup on focused window
     // IntPtr foregroundWindowHandle = NativeMethods.GetForegroundWindow();
@@ -23,7 +18,7 @@ MainWindow::MainWindow(QWidget *parent) : QStackedWidget(parent) {
 
     // startup from cursor
     // Screen.FromPoint(System.Windows.Forms.Cursor.Position)
-
+    printf("winId Main: %d\n", HWND(this->winId()));
     this->setObjectName("base");
 
     this->setWindowFlags(Qt::FramelessWindowHint);
@@ -32,6 +27,8 @@ MainWindow::MainWindow(QWidget *parent) : QStackedWidget(parent) {
     finder = new Finder;
     this->addWidget(finder);
     this->addWidget(&Settings::getInstance());
+
+    Settings::getInstance().initHotkey();
 
     this->createTrayIcon();
 }

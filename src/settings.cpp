@@ -3,21 +3,21 @@
 #include <QFormLayout>
 #include <QString>
 #include <QComboBox>
+#include <windows.h>
 
 #include "settings.h"
 #include "i_path_manager.h"
 #include "win_path_manager.h"
+#include "hotkey.h"
+
+#include <cstdio>
 
 Settings::Settings() {
 
-    // initialization
-    config = new WinConfigManager;
-    
-    std::string theme = config->getConfig("theme");
-    
-    setTheme(stringToThemeEnum(theme));
-
     // gui
+
+    this->setFocusPolicy(Qt::StrongFocus);
+
     QComboBox *themeSelector = new QComboBox;
     themeSelector->addItems({"Dark", "Light"});
     connect(themeSelector,QComboBox::currentTextChanged,[this](const QString &text){
@@ -33,9 +33,17 @@ Settings::Settings() {
     });
 
     QFormLayout *layout = new QFormLayout;
+    layout->addRow(tr("&Hotkey:"), Hotkey::getInstance().hotkeyTextBox);
     layout->addRow(tr("&Theme:"), themeSelector);
     layout->addRow(tr("&Position:"), positionSelector);
     this->setLayout(layout);
+
+    // initialization
+    config = new WinConfigManager;
+    
+    std::string theme = config->getConfig("theme");
+    
+    setTheme(stringToThemeEnum(theme));
 }
 
 Settings::Theme Settings::stringToThemeEnum(std::string string) {
@@ -118,4 +126,14 @@ void Settings::setTheme(Theme theme) {
     style.append(themeStyleFile.readAll());
     
     qApp->setStyleSheet(style);
+}
+
+void Settings::initHotkey() {
+    std::string hotkeyString = config->getConfig("hotkey");
+    Hotkey::getInstance().setHotkey(hotkeyString);
+}
+
+void Settings::setHotkey(std::string hotkeyString) 
+{
+    config->writeConfig("hotkey", hotkeyString);
 }

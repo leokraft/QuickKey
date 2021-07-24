@@ -24,6 +24,8 @@ class Settings : public QWidget {
         Settings(Settings const&) = delete;
         void operator=(Settings const&) = delete;
         void setTheme(Theme theme);
+        void initHotkey();
+        void setHotkey(std::string hotkeyString);
 
     private:
         Settings();

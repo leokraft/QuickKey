@@ -42,8 +42,6 @@ int main(int argc, char *argv[]) {
 
     QApplication app(argc, argv);
 
-    Settings::getInstance();
-    
     MainWindow mainWindow;
 
     // mainWindow starts hidden
