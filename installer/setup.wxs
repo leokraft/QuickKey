@@ -44,7 +44,7 @@
 			</Directory>
 
 			<Directory Id="DesktopFolder"/>
-			<Directory Id="ProgramMenuFolder" Name="Programs">
+			<Directory Id="ProgramMenuFolder">
 				<Directory Id="ProgramMenuDir" Name="QuickKey" />
 			</Directory>
 		</Directory>
@@ -83,7 +83,7 @@
 			<Component Id='StartMenuShortcut' Guid='258e9c86-4605-4e31-8e8b-9b20631edb28'>
 
 				<Condition>STARTMENUSHORTCUT</Condition>
-				<Shortcut Id="startmenuQuickKey" Name="QuickKey"
+				<Shortcut Id="startmenuQuickKey" Name="QuickKey" Target="[#QuickKeyEXE]"
 					WorkingDirectory='QUICKKEYDIR' Icon="QuickKey.exe" IconIndex="0" />
 				<RegistryKey Root="HKCU" Key="Software\[ProductName]\StartMenuShortcutExists">
 					<RegistryValue Type="string" Value="" KeyPath="yes"/>
