@@ -35,7 +35,7 @@ Settings::Settings() {
     QFormLayout *layout = new QFormLayout;
     layout->addRow(tr("&Hotkey:"), Hotkey::getInstance().hotkeyTextBox);
     layout->addRow(tr("&Theme:"), themeSelector);
-    layout->addRow(tr("&Position:"), positionSelector);
+    //layout->addRow(tr("&Position:"), positionSelector);
     this->setLayout(layout);
 
     // initialization
