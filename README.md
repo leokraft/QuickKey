@@ -6,7 +6,7 @@
   QuickKey
   <br>
   
-  ![GitHub release (latest by date)](https://img.shields.io/github/downloads/leokraft/QuickKey/latest/total?style=plastic)
+  ![GitHub all releases](https://img.shields.io/github/downloads/leokraft/QuickKey/total?color=green)
   ![GitHub](https://img.shields.io/github/license/leokraft/QuickKey?color=green)
   
 </h1>
