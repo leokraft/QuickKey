@@ -1,8 +1,9 @@
-#include "hotkey_settings.h"
-
 #include <algorithm>
 #include <sstream>
 #include <set>
+
+#include "hotkey_settings.h"
+#include "key_map.h"
 
 HotkeySettings::HotkeySettings(bool win, bool ctrl, bool alt, bool shift, int code) {
     
@@ -47,13 +48,7 @@ HotkeySettings::HotkeySettings(std::string hotkeyString) {
     if (keys.size() > 0) {
         std::string charKey = *keys.begin();
         
-        if (charKey == "SPACE") {
-            code = VK_SPACE;
-
-        } else {
-            // char to virtual key code 
-            code = (int)*charKey.c_str();
-        }
+        code = KeyMap::fromString(charKey);
     }
 }
 
@@ -77,14 +72,7 @@ std::string HotkeySettings::toString() {
     }
 
     if (code > 0) {
-
-        if (code == VK_SPACE) {
-            string += "SPACE";
-
-        } else {
-            UINT charInt = MapVirtualKeyA(code, MAPVK_VK_TO_CHAR);
-            string += std::string((char*)&charInt);
-        }
+        string += KeyMap::toString(code);
     }
     return string;
 }

@@ -6,23 +6,24 @@
 #include "i_config_manager.h"
 #include "win_config_manager.h"
 
-
 class Settings : public QWidget {
 
     Q_OBJECT
 
     public:
-        static Settings& getInstance()
-        {
+        static Settings& getInstance() {
+
             static Settings instance;
             return instance;
         }
 
+        Settings(Settings const&) = delete;
+        void operator=(Settings const&) = delete;
+
         // TODO maybe bidirectional hashmap for <Enum, String>
         enum Theme {LIGHT, DARK, NONE}; // NONE has to be at the end since our iterator skips the last enum
         enum Position {PRIMARY_MONITOR, MOUSE_CURSOR, FOCUSED_WINDOW, UNDEFINED};
-        Settings(Settings const&) = delete;
-        void operator=(Settings const&) = delete;
+        
         void setTheme(Theme theme);
         void initHotkey();
         void setHotkey(std::string hotkeyString);

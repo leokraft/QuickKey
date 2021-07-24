@@ -89,7 +89,7 @@ void Hotkey::setHotkey(std::string hotkeyString) {
     lastValidHotkeySettings = HotkeySettings(hotkeyString);
 
     registerHotkeySettings();
-    printf(hotkeySettings.toString().c_str());
+    printf(("Set hotkey: " + hotkeySettings.toString()).c_str());
     hotkeyTextBox->setText(QString::fromStdString(hotkeySettings.toString()));
 }
 
@@ -109,9 +109,6 @@ void Hotkey::registerHotkeySettings() {
     HWND winId = HWND(hotkeyTextBox->window()->winId());
     UINT fsModifiers = lastValidHotkeySettings.getFSModifier();
     
-    printf("winId: %d\n", winId);
-    printf("modifier: %d\n", fsModifiers);
-    printf("code: %d\n", lastValidHotkeySettings.code);
     // register hotkey to the window with the given window id
     // Virtual-Key Codes -> https://docs.microsoft.com/en-us/windows/win32/inputdev/virtual-key-codes
     if (!RegisterHotKey(winId, id, fsModifiers, lastValidHotkeySettings.code)) {
@@ -131,3 +128,4 @@ void Hotkey::registerHotkeySettings() {
         hotkeySettings = lastValidHotkeySettings.clone();
     }
 }
+
