@@ -33,3 +33,15 @@ QWidget#selector > QPushButton {
     width: 32px;
     height: 32px;
 }
+
+/* Custom hotkey setting */
+
+QLineEdit#hotkeyInput:read-only {
+    border-width: 1px;
+    border-style: solid;
+    border-radius: 6px;
+}
+
+QLineEdit#hotkeyInput:read-only:focus {
+    border-width: 2px;
+}

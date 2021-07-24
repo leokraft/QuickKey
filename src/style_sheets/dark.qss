@@ -48,12 +48,22 @@ QWidget#selector > QPushButton:hover {
     color: #C9D1D9;
 }
 
+/* Custom hotkey setting */
+QLineEdit#hotkeyInput:read-only {
+    border-color: #30363D;
+    background: #0D1117;
+}
+
+QLineEdit#hotkeyInput:read-only:focus {
+    border-color: #1F6FEB;
+    background-color: #161B22;
+}
+
 /* sys tray*/
 
 QMenu#trayIconMenu::item:selected {
     background-color: #30363D;
 }
-/* sys tray */
 
 QMenu#trayIconMenu::separator {
     background: #F4F9FD;

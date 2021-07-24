@@ -1,0 +1,8 @@
+/* Custom hotkey setting */
+QLineEdit#hotkeyInput:read-only {
+    border-color: #30363D;
+}
+
+QLineEdit#hotkeyInput:read-only:focus {
+    border-color: #1F6FEB;
+}
