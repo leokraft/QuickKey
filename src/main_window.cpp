@@ -7,7 +7,6 @@
 #include <windows.h>
 
 #include "main_window.h"
-#include "i_platform_manager.h"
 #include "settings.h"
 
 MainWindow::MainWindow(QWidget *parent) : QStackedWidget(parent) {
