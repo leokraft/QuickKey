@@ -25,8 +25,8 @@ int KeyMap::fromString(std::string vkString) {
         
         return itr->second;
     }
-
-    return (int)*vkString.c_str();
+    
+    return VkKeyScanExW(tolower(*vkString.c_str()), GetKeyboardLayout(0));
 }
 
 KeyMap::KeyMap() {
