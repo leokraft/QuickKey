@@ -5,7 +5,7 @@
 		Id='*' 
 		Language='2057' 
 		UpgradeCode='7d3905fc-6660-4d95-b128-32914adce035'
-		Version='1.4.0'>
+		Version='1.4.2'>
 
 		<Package Id='*' 
 			Keywords='Installer' 
