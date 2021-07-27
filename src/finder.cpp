@@ -7,7 +7,6 @@
 #include <QApplication>
 #include <iostream>
 
-#include "loader.h"
 #include "finder.h"
 #include "flowlayout.h"
 #include "main_window.h"
@@ -56,6 +55,8 @@ Finder::Finder(QWidget *parent) : QWidget(parent)  {
 
     setLayout(mainLayout);
     setWindowTitle("QuickKey");
+
+    loader = Loader();
 };
 
 void Finder::setSearchBarFocus() {
@@ -89,42 +90,36 @@ void Finder::applySearch(const QString &searchText) {
     
     FlowLayout *flow = new FlowLayout;
 
-    QStringList tags = searchText.split(" ");
+    QStringList tags = searchText.split(" ", Qt::SkipEmptyParts);
 
-    QStringList searchMatches;
+    loader.setFilter(tags);
 
-    Loader loader(tags);
-
+    QString searchResult = loader.next();
     int i = 0;
-    while (loader.hasNext() && i < 100) {
 
-        QString next = loader.next();
+    while (!searchResult.isNull() && i < 100) {
 
-        // we need to check since hasNext can return true if only empty lines and comments are left
-        if (!next.isNull()) {
-            searchMatches.push_back(next);
-        } 
-        i++;
-    }
+        QPushButton *button = new QPushButton(searchResult);
 
-    // to intergrate inside iterator ^^^^^^
-    for (QString character : searchMatches) {
-        QPushButton *button = new QPushButton(character);
         // copies string to clipboard on button press
         connect(button, &QPushButton::clicked,
-        [this, character](){
-            QApplication::clipboard()->setText(character);
+        [this, searchResult]() {
+            QApplication::clipboard()->setText(searchResult);
             static_cast<MainWindow*>(this->window())->hide();
             searchBar->clear();
         });
         
         flow->addWidget(button);
+
+        i++;
+        searchResult = loader.next();
     }
 
     resultBox->setLayout(flow);
     deleteOldItems();
     contentLayout->addWidget(resultBox);
     contentLayout->addStretch();
+
 };
 
 void Finder::deleteOldItems() {

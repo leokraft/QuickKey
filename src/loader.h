@@ -4,18 +4,23 @@
 
 #include <QString>
 #include <QStringList>
-#include <fstream>
+
 #include <string>
+#include <list>
 
 class Loader {
 
     public:
-        Loader(QStringList tags);
+        Loader();
         QString next();
-        bool hasNext();
         void setFilter(QStringList tags);
+
     private:
-        std::ifstream infile;
-        QStringList tags;
+
+        QStringList searchTags;
+        std::list<std::pair<QString, QStringList>> unicodeData;
+        std::list<std::pair<QString, QStringList>>::iterator currentIter;
+
+        bool matchesPartial(QStringList &itemTags, QStringList &searchTag);
 };
 #endif

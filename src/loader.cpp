@@ -1,38 +1,40 @@
-#include "loader.h"
 #include <sstream>
+#include <fstream>
+#include <algorithm>
+#include <QFontDatabase>
+
+#include "loader.h"
 #include "main_window.h"
 #include "win_path_manager.h"
 
-Loader::Loader(QStringList tags) : tags(tags) {
+Loader::Loader() {
 
     //create stream
     // TODO handle this (WinPathManager) diffrently to respect interface
     std::string FILE_NAME = WinPathManager::executablePath + "/resources/DerivedName.txt";
+    std::ifstream infile;
     infile.open(FILE_NAME, std::ifstream::in);
 
-}
-
-bool Loader::hasNext() {
-    return infile.peek()!=EOF;
-}
-
-QString Loader::next() {
-
     std::string tempLine;
+    std::string unicodeHexString;
     QString unicode;
-    QStringList unicodeTags;
-    QStringList searchTags;
 
-    do {
-        do {
-            if (!std::getline(infile, tempLine)) {
-                return NULL;
-            }
-        } while(tempLine[0] == '#'); // ignore comments starting with #
+    std::list<QFontMetrics> metrics;
+    for (QString family : QFontDatabase::families()) {
+        metrics.push_back(QFontMetrics(QFont(family)));
+    }
+    
+
+    // parse unicode textfile and save as pair list <unicode, tags>
+    while (std::getline(infile, tempLine)) {
+
+        if (tempLine[0] == '#') {
+            // ignore comments
+            continue;
+        }
 
         std::istringstream iline(tempLine);
 
-        std::string unicodeHexString;
         std::getline(iline, unicodeHexString, ';');
 
         std::istringstream string_to_hex(unicodeHexString);
@@ -43,28 +45,65 @@ QString Loader::next() {
 
         // interpret uint32_t as ucs4 encoding to get representation
         unicode = QString::fromUcs4(&unicodeHex, 1);
-        
+
+        // TODO check if unicode is displayable?
+
         std::string unicodeTag;
-        unicodeTags.clear();
+        QStringList unicodeTags;
 
-        searchTags = tags;
-        searchTags.detach();
-        
         while (std::getline(iline, unicodeTag, ' ')) {
-            if (unicodeTag != "") {
 
-                for (int i = 0; i < searchTags.size(); i++) {
-                    
-                    // FIXME what about multiple unfinished tags?
-                    if (QString::fromStdString(unicodeTag).toLower().startsWith(searchTags.at(i).toLower())) {
-                        searchTags.remove(i);
-                    }
-                }
-            }
+            unicodeTags.append(QString::fromStdString(unicodeTag));
+
+        }
+        
+        unicodeData.push_back(std::make_pair(unicode, unicodeTags));
+    }
+    
+    currentIter = unicodeData.begin();
+}
+
+QString Loader::next() {
+
+    QString validNext = NULL;
+    while (validNext.isEmpty() && currentIter != unicodeData.end()) {
+
+        QStringList itemTags = (*currentIter).second;
+        
+        // if no search tag is given we want to return all items
+        if ((!searchTags.isEmpty()) && !matchesPartial(itemTags, searchTags)) {
+            currentIter++;
+            continue;
         }
 
-    } while (!searchTags.isEmpty());
-    
-    
-    return unicode;
+        validNext = (*currentIter).first;
+        currentIter++;
+    }
+
+    return validNext;
+}
+
+bool Loader::matchesPartial(QStringList &itemTags, QStringList &searchTags) {
+
+    // checks whether every search tag is present in items tags
+    // it is sufficient if the tag is only present as a prefix of an item tag
+    for (QString searchTag : searchTags) {
+
+        auto present = std::find_if(itemTags.begin(), itemTags.end(),
+            [searchTag](QString itemTag) {
+                return itemTag.toLower().startsWith(searchTag.toLower());
+            });
+        
+        if (present == itemTags.end()) {
+            return false;
+        }
+    }
+
+    return true;
+}
+
+void Loader::setFilter(QStringList tags) {
+    this->searchTags = tags;
+    // reset iterator to strat searching from the beginning again
+    currentIter = unicodeData.begin();
 }
