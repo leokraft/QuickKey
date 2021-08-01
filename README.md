@@ -41,12 +41,16 @@ Run the installer and follow the instructions.
   
 ### Build
 
-> Make sure you have `qmake` installed and added to your PATH.\
-> If not have a look [here](https://www.qt.io/download-qt-installer).
+**Prerequisites:**
+1. Compiler (e.g. [MinGW](https://mingw-w64.org/doku.php/download))
+2. [Qt 6.1 or newer](https://www.qt.io/download-qt-installer) prebuild files for your compiler
+3. [Wix toolset](https://wixtoolset.org/releases/) to compile the installer
+
+> Make sure you have the respective `bin/` folders added to your PATH.
 
 Clone the repository, and run `qmake quickkey.pro` to create your own Makefile.\
-To build run `make` or `mingw32-make` depending on what you have installed.\
-Afterwards run the produced `QuickKey`-binary inside the release folder.
+To build run `make` or `mingw32-make`, depending on your installed compiler.\
+Afterwards run the produced `QuickKey`-binary inside the `release/` folder.
 
 ## Configuration 
 
@@ -55,8 +59,8 @@ A selection of configuration options
 - light/darkmode
 - hotkey to open *QuickKey* search window
 
-all these options are available under the settings.
+Settings can be accessed by right-clicking the *QuickKey* tray icon and selecting *Settings*.
 
 ### Acknowledgement
 
-This application is written using the Qt 6.1.1 Open Source version under the GPLv3 License.
+This application is written using the **Qt 6.1.1** Open Source version under the GPLv3 License.
