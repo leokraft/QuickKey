@@ -3,7 +3,6 @@
 #include "main_window.h"
 #include "win_path_manager.h"
 #include "settings.h"
-#include "config_manager.h"
 
 /** 
  * START APP -> run exe or autostart on system start
@@ -41,9 +40,6 @@ int main(int argc, char *argv[]) {
 
     IPathManager *pathManager = new WinPathManager();
     pathManager->initExecutablePath(argv[0]);
-
-    Config_Manager *confManager = new Config_Manager();
-    confManager->checkConfig();
 
     QApplication app(argc, argv);
 
