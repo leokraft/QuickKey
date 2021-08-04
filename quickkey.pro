@@ -22,7 +22,7 @@ style_sheets.path = $$OUT_PWD/release/style_sheets
 resources.files = $$files(src/resources/*)
 resources.path = $$OUT_PWD/release/resources
 
-config.files = src/config.ini
+config.files = src/default_config.ini
 config.path = $$OUT_PWD/release/
 
 # You can make your code fail to compile if you use deprecated APIs.

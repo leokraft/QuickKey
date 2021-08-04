@@ -107,7 +107,7 @@
 			</Component>
 
 			<Component Id="CONFIG" Guid="affde892-80fe-4008-b7bb-729ca98388c5">
-				<File Id="CONFIG" KeyPath="yes" Source="..\release\config.ini" />
+				<File Id="CONFIG" KeyPath="yes" Source="..\release\default_config.ini" />
 			</Component>
 
 			<!-- Required (?) DLLs -->
