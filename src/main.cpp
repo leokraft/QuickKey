@@ -37,6 +37,7 @@
 
 int main(int argc, char *argv[]) {
 
+
     IPathManager *pathManager = new WinPathManager();
     pathManager->initExecutablePath(argv[0]);
 
@@ -45,7 +46,6 @@ int main(int argc, char *argv[]) {
     MainWindow mainWindow;
 
     // mainWindow starts hidden
- 
+
     return app.exec();
 }
-
