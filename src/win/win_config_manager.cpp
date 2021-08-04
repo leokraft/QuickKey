@@ -1,8 +1,9 @@
 #include <windows.h>
 #include "win_config_manager.h"
+#include <iostream>
+#include <fstream>
 
 WinConfigManager::WinConfigManager(){
-    
 
     std::ifstream ifile; //start filereader
     ifile.open(appdataPath + "\\config.ini"); //open filereader

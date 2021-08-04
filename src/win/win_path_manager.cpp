@@ -4,6 +4,8 @@
 
 std::string WinPathManager::executablePath;
 
+std::string WinPathManager::configPath = std::string(getenv("APPDATA")).append("\\QuickKey");
+
 void WinPathManager::initExecutablePath(const std::string called_cmd) {
 
     // Locate the executable name
@@ -15,4 +17,5 @@ void WinPathManager::initExecutablePath(const std::string called_cmd) {
 
     // Remove the executable name
     executablePath = called_cmd.substr(0, n);
+
 }

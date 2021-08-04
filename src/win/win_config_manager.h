@@ -2,10 +2,8 @@
 #define WIN_CONFIG_MANAGER_H
 
 #include <string>
-#include "i_config_manager.h"
 #include "win_path_manager.h"
-#include <iostream>
-#include <fstream>
+#include "i_config_manager.h"
 
 
 class WinConfigManager : public IConfigManager {
@@ -14,10 +12,8 @@ class WinConfigManager : public IConfigManager {
         ~WinConfigManager(){}
         void writeConfig(const std::string key, const std::string value);
         std::string getConfig(const std::string key);
-
     private:
-        WinPathManager pathManager;
-        std::string appdataPath = pathManager.configPath;
+        std::string appdataPath = WinPathManager::configPath;
 };
 
 #endif
