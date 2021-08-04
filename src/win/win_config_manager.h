@@ -16,7 +16,6 @@ class WinConfigManager : public IConfigManager {
         std::string getConfig(const std::string key);
 
     private:
-        void moveConfig();
         WinPathManager pathManager;
         std::string appdataPath = pathManager.configPath;
 };
