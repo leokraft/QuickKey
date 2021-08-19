@@ -43,8 +43,7 @@ void BuildIncrementer::foo(){
     fileinBuild.close();
 
     string inbuf;
-
-    while(!filein.eof()){
+    do{
         getline(filein, inbuf);
 
         int spot = inbuf.find(searchString);
@@ -54,9 +53,16 @@ void BuildIncrementer::foo(){
             tempstring += inbuf.substr(spot + searchString.length(), inbuf.length());
             inbuf = tempstring;
         }
+
+        //if end of file is reached, no newline is added
+        if(filein.eof()){
+            fileout << inbuf;
+            break;
+        }
+
+        fileout << inbuf << "\n";
         
-        fileout << inbuf << endl;
-    }
+    } while (!filein.eof());
 
     filein.close();
     fileout.close();
