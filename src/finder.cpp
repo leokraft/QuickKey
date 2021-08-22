@@ -108,7 +108,7 @@ void Finder::applySearch(const QString &searchText) {
             QApplication::clipboard()->setText(searchResult);
             static_cast<MainWindow*>(this->window())->hide();
             searchBar->clear();
-            simulatedPasteKeybind();
+            simulatedPaste();
         });
 
         flow->addWidget(button);
@@ -135,7 +135,7 @@ void Finder::deleteOldItems() {
     }
 };
 
-void Finder::simulatedPasteKeybind(){
+void Finder::simulatedPaste(){
     INPUT ctrlV [4];
     ZeroMemory(ctrlV, sizeof ctrlV);
 
