@@ -28,5 +28,6 @@ class Finder : public QWidget {
         void copyFirstItem();
         void applySearch(const QString &searchText);
         void deleteOldItems();
+        void simulatedPasteKeybind();
 };
 #endif

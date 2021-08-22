@@ -7,6 +7,7 @@
 #include <QApplication>
 #include <iostream>
 
+#include "windows.h"
 #include "finder.h"
 #include "flowlayout.h"
 #include "main_window.h"
@@ -107,8 +108,9 @@ void Finder::applySearch(const QString &searchText) {
             QApplication::clipboard()->setText(searchResult);
             static_cast<MainWindow*>(this->window())->hide();
             searchBar->clear();
+            simulatedPasteKeybind();
         });
-        
+
         flow->addWidget(button);
 
         i++;
@@ -132,3 +134,24 @@ void Finder::deleteOldItems() {
         }
     }
 };
+
+void Finder::simulatedPasteKeybind(){
+    INPUT ctrlV [4];
+    ZeroMemory(ctrlV, sizeof ctrlV);
+
+    ctrlV [0].type = INPUT_KEYBOARD;
+    ctrlV [0].ki.wVk = VK_LCONTROL;
+
+    ctrlV [1].type = INPUT_KEYBOARD;
+    ctrlV [1].ki.wVk = 'V'; //assuming ASCII
+
+    ctrlV [2].type = INPUT_KEYBOARD;
+    ctrlV [2].ki.wVk = 'V'; //assuming ASCII
+    ctrlV [2].ki.dwFlags = KEYEVENTF_KEYUP;
+
+    ctrlV [3].type = INPUT_KEYBOARD;
+    ctrlV [3].ki.wVk = VK_LCONTROL;
+    ctrlV [3].ki.dwFlags = KEYEVENTF_KEYUP;
+    
+    SendInput (4, ctrlV, sizeof (INPUT));
+}
