@@ -5,6 +5,7 @@
 #include <QComboBox>
 #include <QCheckBox>
 #include <windows.h>
+#include <sstream>
 
 #include "settings.h"
 #include "i_path_manager.h"
@@ -44,17 +45,11 @@ Settings::Settings() {
     });
 
     QCheckBox *checkbox = new QCheckBox("", this);
-    if(config->getConfig("Autopaste") == "true"){
-        checkbox->setChecked(true);
-    } else if (config->getConfig("Autopaste") == "false"){        
-        checkbox->setChecked(false);
-    }
+    bool autoPasteActivated;
+    std::istringstream(config->getConfig("Autopaste")) >> std::boolalpha >> autoPasteActivated;
+    checkbox->setChecked(autoPasteActivated);
     connect(checkbox, QCheckBox::stateChanged, [this](const int &state){ 
-        if(state == 2){ //on state
-            config->writeConfig("Autopaste", "true");
-        } else if(state == 0){ //off state
-            config->writeConfig("Autopaste", "false");
-        }
+        config->writeConfig("Autopaste", state ? "true": "false");        
     });
 
     QFormLayout *layout = new QFormLayout;
