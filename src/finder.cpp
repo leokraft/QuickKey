@@ -11,9 +11,11 @@
 #include "finder.h"
 #include "flowlayout.h"
 #include "main_window.h"
+#include "win_path_manager.h"
 
 Finder::Finder(QWidget *parent) : QWidget(parent)  {
 
+    config = new WinConfigManager;
     searchBar = new QLineEdit;
     searchBar->setObjectName("search");
     searchBar->setFocus();
@@ -108,7 +110,9 @@ void Finder::applySearch(const QString &searchText) {
             QApplication::clipboard()->setText(searchResult);
             static_cast<MainWindow*>(this->window())->hide();
             searchBar->clear();
-            simulatedPaste();
+            if(config->getConfig("Autopaste") == "true"){
+                simulatedPaste();
+            }
         });
 
         flow->addWidget(button);

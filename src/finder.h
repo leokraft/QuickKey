@@ -4,6 +4,8 @@
 
 #include <QWidget>
 #include "loader.h"
+#include "i_config_manager.h"
+#include "win_config_manager.h"
 
 class QLineEdit;
 class QGroupBox;
@@ -22,6 +24,7 @@ class Finder : public QWidget {
         QLineEdit *searchBar;
         QPushButton *settingsButton;
         QVBoxLayout *contentLayout;
+        IConfigManager *config;
 
         Loader loader;
 
