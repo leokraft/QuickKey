@@ -39,6 +39,7 @@ Run the installer and follow the instructions.
 ### Build
 
 **Prerequisites:**
+
 1. Compiler (e.g. [MinGW](https://mingw-w64.org/doku.php/download))
 2. [Qt 6.1 or newer](https://www.qt.io/download-qt-installer) prebuild files for your compiler
 3. [Wix toolset](https://wixtoolset.org/releases/) to compile the installer
@@ -55,8 +56,9 @@ A selection of configuration options
 
 - light/darkmode
 - hotkey to open _QuickKey_ search window
+- Automatic paste
 
-Settings can be accessed by right-clicking the *QuickKey* tray icon and selecting *Settings*.
+Settings can be accessed by right-clicking the _QuickKey_ tray icon and selecting _Settings_.
 
 ### Acknowledgement
 
