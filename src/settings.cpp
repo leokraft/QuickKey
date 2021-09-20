@@ -3,14 +3,15 @@
 #include <QFormLayout>
 #include <QString>
 #include <QComboBox>
+#include <QCheckBox>
 #include <windows.h>
+#include <sstream>
 
 #include "settings.h"
 #include "i_path_manager.h"
 #include "win_path_manager.h"
 #include "hotkey.h"
 
-#include <cstdio>
 
 Settings::Settings() {
 
@@ -43,10 +44,19 @@ Settings::Settings() {
         config->writeConfig("Position", text.toStdString());
     });
 
+    QCheckBox *checkbox = new QCheckBox("", this);
+    bool autoPasteActivated;
+    std::istringstream(config->getConfig("Autopaste")) >> std::boolalpha >> autoPasteActivated;
+    checkbox->setChecked(autoPasteActivated);
+    connect(checkbox, QCheckBox::stateChanged, [this](const int &state){ 
+        config->writeConfig("Autopaste", state ? "true": "false");        
+    });
+
     QFormLayout *layout = new QFormLayout;
     layout->addRow(tr("&Hotkey:"), Hotkey::getInstance().hotkeyTextBox);
     layout->addRow(tr("&Theme:"), themeSelector);
     //layout->addRow(tr("&Position:"), positionSelector);
+    layout->addRow(tr("&Automatic paste:"),checkbox);
     this->setLayout(layout);
 }
 
