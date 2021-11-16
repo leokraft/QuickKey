@@ -2,6 +2,7 @@
 #include <fstream>
 #include <algorithm>
 #include <QFontDatabase>
+#include <set>
 
 #include "loader.h"
 #include "main_window.h"
@@ -18,13 +19,7 @@ Loader::Loader() {
     std::string tempLine;
     std::string unicodeHexString;
     QString unicode;
-
-    std::list<QFontMetrics> metrics;
-    for (QString family : QFontDatabase::families()) {
-        metrics.push_back(QFontMetrics(QFont(family)));
-    }
     
-
     // parse unicode textfile and save as pair list <unicode, tags>
     while (std::getline(infile, tempLine)) {
 
