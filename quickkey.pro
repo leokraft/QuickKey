@@ -6,14 +6,14 @@ TEMPLATE = app
 TARGET = QuickKey
 INCLUDEPATH += . ./src/win ./src/interfaces
 
-VERSION = 1.4.2
+VERSION = 1.4.3
 
 QT += widgets
 
 RC_ICONS = src/qicon.ico
 RESOURCES = app.qrc
 
-CONFIG += console
+#CONFIG += console
 CONFIG += file_copies
 
 COPIES += style_sheets resources config
