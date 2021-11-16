@@ -6,7 +6,7 @@ TEMPLATE = app
 TARGET = QuickKey
 INCLUDEPATH += . ./src/win ./src/interfaces
 
-VERSION = $${VERSION_MAJOR}.$${VERSION_MINOR}.$${VERSION_PATCH}.$${VERSION_BUILD}
+VERSION = 1.4.2
 
 QT += widgets
 
@@ -37,11 +37,3 @@ config.path = $$OUT_PWD/release/
 # Input
 HEADERS += $$files(src/*.h) $$files(src/win/*.h) $$files(src/interfaces/*.h)
 SOURCES += $$files(src/*.cpp) $$files(src/win/*.cpp) $$files(src/interfaces/*.cpp)
-
-
-
-
-
-
-
-

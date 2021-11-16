@@ -3,6 +3,7 @@
 #include "main_window.h"
 #include "win_path_manager.h"
 #include "settings.h"
+
 /** 
  * START APP -> run exe or autostart on system start
  * ON START -> dont show window; show icon in system tray
@@ -35,6 +36,7 @@
  */
 
 int main(int argc, char *argv[]) {
+
 
     IPathManager *pathManager = new WinPathManager();
     pathManager->initExecutablePath(argv[0]);
