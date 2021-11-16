@@ -63,6 +63,7 @@ Finder::Finder(QWidget *parent) : QWidget(parent)  {
 };
 
 void Finder::setSearchBarFocus() {
+    searchBar->clear();
     searchBar->setFocus();
 }
 
