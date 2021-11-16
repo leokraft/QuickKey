@@ -33,6 +33,7 @@ WinConfigManager::WinConfigManager(){
             // Failed to create directory.
         }
     }
+    ifile.close();
 }
 
 void WinConfigManager::writeConfig(const std::string key, const std::string value) {
