@@ -6,11 +6,6 @@ TEMPLATE = app
 TARGET = QuickKey
 INCLUDEPATH += . ./src/win ./src/interfaces
 
-VERSION_MAJOR = 1
-VERSION_MINOR = 4
-VERSION_PATCH = 2
-VERSION_BUILD = 9
-
 VERSION = $${VERSION_MAJOR}.$${VERSION_MINOR}.$${VERSION_PATCH}.$${VERSION_BUILD}
 
 QT += widgets
@@ -18,7 +13,7 @@ QT += widgets
 RC_ICONS = src/qicon.ico
 RESOURCES = app.qrc
 
-#CONFIG += console
+CONFIG += console
 CONFIG += file_copies
 
 COPIES += style_sheets resources config

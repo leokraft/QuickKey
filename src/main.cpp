@@ -3,9 +3,6 @@
 #include "main_window.h"
 #include "win_path_manager.h"
 #include "settings.h"
-
-#include "build_incrementer.h"
-
 /** 
  * START APP -> run exe or autostart on system start
  * ON START -> dont show window; show icon in system tray
@@ -38,9 +35,6 @@
  */
 
 int main(int argc, char *argv[]) {
-
-    BuildIncrementer *test;
-    test->foo();
 
     IPathManager *pathManager = new WinPathManager();
     pathManager->initExecutablePath(argv[0]);
