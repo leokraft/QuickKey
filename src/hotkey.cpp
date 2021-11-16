@@ -90,6 +90,7 @@ void Hotkey::setHotkey(std::string hotkeyString) {
 
     registerHotkeySettings();
     printf(("Set hotkey: " + hotkeySettings.toString()).c_str());
+    putchar('\n');
     hotkeyTextBox->setText(QString::fromStdString(hotkeySettings.toString()));
 }
 
@@ -128,4 +129,3 @@ void Hotkey::registerHotkeySettings() {
         hotkeySettings = lastValidHotkeySettings.clone();
     }
 }
-
