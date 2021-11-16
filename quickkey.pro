@@ -6,6 +6,8 @@ TEMPLATE = app
 TARGET = QuickKey
 INCLUDEPATH += . ./src/win ./src/interfaces
 
+VERSION = 1.4.3
+
 QT += widgets
 
 RC_ICONS = src/qicon.ico
